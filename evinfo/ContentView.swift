@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    // @EnvironmentObject var curLocation: Location
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MapView()
     }
 }
 
