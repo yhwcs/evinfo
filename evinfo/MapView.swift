@@ -24,6 +24,7 @@ struct MapView: View {
     // user tracking mode
     @State var trackingMode: MapUserTrackingMode = .none
     // @EnvironmentObject var curLocation: Location
+    @StateObject var stationList = StationList()
     
     var body: some View {
         ZStack{

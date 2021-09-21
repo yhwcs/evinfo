@@ -17,6 +17,8 @@
 		809DBBB926F47BC60002D1EF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBB826F47BC60002D1EF /* MapView.swift */; };
 		809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBBA26F47FC30002D1EF /* LocationHelper.swift */; };
 		809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBBC26F4ADC80002D1EF /* Location.swift */; };
+		809DBBC126F9FB660002D1EF /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC026F9FB660002D1EF /* StationListItem.swift */; };
+		809DBBC326F9FC910002D1EF /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC226F9FC910002D1EF /* StationList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		809DBBB826F47BC60002D1EF /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		809DBBBA26F47FC30002D1EF /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		809DBBBC26F4ADC80002D1EF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		809DBBC026F9FB660002D1EF /* StationListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
+		809DBBC226F9FC910002D1EF /* StationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				809DBBB826F47BC60002D1EF /* MapView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
+				809DBBC226F9FC910002D1EF /* StationList.swift */,
+				809DBBC026F9FB660002D1EF /* StationListItem.swift */,
 				809DBBAA26F478B20002D1EF /* Assets.xcassets */,
 				809DBBAF26F478B20002D1EF /* LaunchScreen.storyboard */,
 				809DBBB226F478B20002D1EF /* Info.plist */,
@@ -160,8 +166,10 @@
 				809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */,
 				809DBBA226F478B10002D1EF /* AppDelegate.swift in Sources */,
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,
+				809DBBC326F9FC910002D1EF /* StationList.swift in Sources */,
 				809DBBB926F47BC60002D1EF /* MapView.swift in Sources */,
 				809DBBA926F478B10002D1EF /* evinfo.xcdatamodeld in Sources */,
+				809DBBC126F9FB660002D1EF /* StationListItem.swift in Sources */,
 				809DBBA626F478B10002D1EF /* ContentView.swift in Sources */,
 				809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */,
 			);
