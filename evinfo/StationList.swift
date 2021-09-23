@@ -10,8 +10,14 @@ import Combine
 
 class StationList: ObservableObject {
     init(){
-        getStationInformation()
+        //getStationInformation()
+        items.append(exampleA)
+        items.append(exampleB)
+        items.append(exampleC)
     }
+    var exampleA = StationListItem(id: 1, stationName: "nameA", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.40754, lng: 126.95355, callNumber: "numA", chargerStat: "statA", distance: 1.0)
+    var exampleB = StationListItem(id: 2, stationName: "nameB", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.38845, lng: 126.93124, callNumber: "numA", chargerStat: "statA", distance: 1.0)
+    var exampleC = StationListItem(id: 3, stationName: "nameC", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.48299, lng: 126.90871, callNumber: "numA", chargerStat: "statA", distance: 1.0)
     
     @Published var items: [StationListItem] = []
     var canclelables = Set<AnyCancellable>()
