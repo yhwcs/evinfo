@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		034460B20287EBF6D9848AC2 /* Pods_evinfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45AFFEE87139DE5FCA5B16B0 /* Pods_evinfo.framework */; };
 		809DBBA226F478B10002D1EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBA126F478B10002D1EF /* AppDelegate.swift */; };
 		809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBA326F478B10002D1EF /* SceneDelegate.swift */; };
 		809DBBA626F478B10002D1EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBA526F478B10002D1EF /* ContentView.swift */; };
@@ -19,9 +20,11 @@
 		809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBBC26F4ADC80002D1EF /* Location.swift */; };
 		809DBBC126F9FB660002D1EF /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC026F9FB660002D1EF /* StationListItem.swift */; };
 		809DBBC326F9FC910002D1EF /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC226F9FC910002D1EF /* StationList.swift */; };
+		809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45AFFEE87139DE5FCA5B16B0 /* Pods_evinfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_evinfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		809DBB9E26F478B10002D1EF /* evinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = evinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		809DBBA126F478B10002D1EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		809DBBA326F478B10002D1EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +39,9 @@
 		809DBBBC26F4ADC80002D1EF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		809DBBC026F9FB660002D1EF /* StationListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
 		809DBBC226F9FC910002D1EF /* StationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
+		809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
+		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
+		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034460B20287EBF6D9848AC2 /* Pods_evinfo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +61,8 @@
 			children = (
 				809DBBA026F478B10002D1EF /* evinfo */,
 				809DBB9F26F478B10002D1EF /* Products */,
+				A9F9C38F8DB2E41AF244ACFC /* Pods */,
+				C4C76B9C69C14F12A8707911 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +85,7 @@
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
 				809DBBC226F9FC910002D1EF /* StationList.swift */,
 				809DBBC026F9FB660002D1EF /* StationListItem.swift */,
+				809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */,
 				809DBBAA26F478B20002D1EF /* Assets.xcassets */,
 				809DBBAF26F478B20002D1EF /* LaunchScreen.storyboard */,
 				809DBBB226F478B20002D1EF /* Info.plist */,
@@ -93,6 +103,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A9F9C38F8DB2E41AF244ACFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */,
+				962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C4C76B9C69C14F12A8707911 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45AFFEE87139DE5FCA5B16B0 /* Pods_evinfo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -100,9 +127,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 809DBBB526F478B20002D1EF /* Build configuration list for PBXNativeTarget "evinfo" */;
 			buildPhases = (
+				2B41D519A73885689F2D80FC /* [CP] Check Pods Manifest.lock */,
 				809DBB9A26F478B10002D1EF /* Sources */,
 				809DBB9B26F478B10002D1EF /* Frameworks */,
 				809DBB9C26F478B10002D1EF /* Resources */,
+				5EED00506595A97FA5249148 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,6 +187,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2B41D519A73885689F2D80FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-evinfo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5EED00506595A97FA5249148 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		809DBB9A26F478B10002D1EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -169,6 +240,7 @@
 				809DBBC326F9FC910002D1EF /* StationList.swift in Sources */,
 				809DBBB926F47BC60002D1EF /* MapView.swift in Sources */,
 				809DBBA926F478B10002D1EF /* evinfo.xcdatamodeld in Sources */,
+				809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */,
 				809DBBC126F9FB660002D1EF /* StationListItem.swift in Sources */,
 				809DBBA626F478B10002D1EF /* ContentView.swift in Sources */,
 				809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */,
@@ -307,6 +379,7 @@
 		};
 		809DBBB626F478B20002D1EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -328,6 +401,7 @@
 		};
 		809DBBB726F478B20002D1EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
