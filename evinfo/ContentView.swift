@@ -11,7 +11,7 @@ struct ContentView: View {
     // @EnvironmentObject var curLocation: Location
     
     var body: some View {
-        GoogleMapView()
+        MapView()
     }
 }
 

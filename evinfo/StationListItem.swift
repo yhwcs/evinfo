@@ -8,14 +8,17 @@
 import Foundation
 
 struct StationListItem: Identifiable, Codable {
+    var lid = UUID()
     var id: Int
-    var statName: String
-    var chargerType: Int
+    var stationName: String
+    var stationId: String
+    var chargerType: String
     var address: String
-    var location: String // address != location?
+    var location: String
     var useTime: String
     var lat: Double
     var lng: Double
     var callNumber: String
-    var chargerStat: Int
+    var chargerStat: String
+    var distance: Float
 }
