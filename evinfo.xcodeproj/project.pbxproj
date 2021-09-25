@@ -40,6 +40,9 @@
 		809DBBC026F9FB660002D1EF /* StationListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
 		809DBBC226F9FC910002D1EF /* StationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
 		809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
+		809DBBD126FEC0760002D1EF /* IndexedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
+		809DBBD226FEC0760002D1EF /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		809DBBD326FEC0760002D1EF /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +80,7 @@
 		809DBBA026F478B10002D1EF /* evinfo */ = {
 			isa = PBXGroup;
 			children = (
+				809DBBD426FEC0760002D1EF /* Extensions */,
 				809DBBA126F478B10002D1EF /* AppDelegate.swift */,
 				809DBBA326F478B10002D1EF /* SceneDelegate.swift */,
 				809DBBA526F478B10002D1EF /* ContentView.swift */,
@@ -101,6 +105,16 @@
 				809DBBAD26F478B20002D1EF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		809DBBD426FEC0760002D1EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				809DBBD126FEC0760002D1EF /* IndexedCollection.swift */,
+				809DBBD226FEC0760002D1EF /* Binding.swift */,
+				809DBBD326FEC0760002D1EF /* ForEach.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A9F9C38F8DB2E41AF244ACFC /* Pods */ = {

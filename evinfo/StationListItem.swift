@@ -8,8 +8,8 @@
 import Foundation
 
 struct StationListItem: Identifiable, Codable {
-    var lid = UUID()
-    var id: Int
+    var id = UUID()
+    //var id: Int
     var stationName: String
     var stationId: String
     var chargerType: String
@@ -21,4 +21,19 @@ struct StationListItem: Identifiable, Codable {
     var callNumber: String
     var chargerStat: String
     var distance: Float
+    
+    // Encode/Decode is performed except for id that allows item to be identification
+    enum CodingKeys: String, CodingKey {
+        case stationName
+        case stationId
+        case chargerType
+        case address
+        case location
+        case useTime
+        case lat
+        case lng
+        case callNumber
+        case chargerStat
+        case distance
+    }
 }

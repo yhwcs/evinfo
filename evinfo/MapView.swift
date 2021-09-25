@@ -26,13 +26,17 @@ struct MapView: View {
     // @EnvironmentObject var curLocation: Location
     @StateObject var stationList = StationList()
     
+    
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(trackingMode))
+            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(trackingMode), annotationItems: stationList.items) {
+                items in
+                MapMarker(coordinate: CLLocationCoordinate2D(latitude: items.lat, longitude: items.lng), tint: Color.purple)
+            }
                     .onAppear(){
                         region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: cur_location.latitude, longitude: cur_location.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
                         print(cur_location)
-                        stationList.getStationInformation(latitude: cur_location.latitude, longitude: cur_location.longitude, size: 10)
+                        stationList.getStationInformation(latitude: cur_location.latitude, longitude: cur_location.longitude, size: 30)
                     }
 
             // user tracking mode button
