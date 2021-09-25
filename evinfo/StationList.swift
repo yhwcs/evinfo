@@ -9,16 +9,17 @@ import SwiftUI
 import Combine
 
 class StationList: ObservableObject {
-    init(){
-        getStationInformation()
+    init() {}
+    init(latitude: Double, longitude: Double, size: Int){
+        getStationInformation(latitude:latitude, longitude:longitude, size:size)
     }
     
     @Published var items: [StationListItem] = []
     var canclelables = Set<AnyCancellable>()
     
     // Method
-    func getStationInformation() {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1/comments") else { return }
+    func getStationInformation(latitude: Double, longitude: Double, size: Int) {
+        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/chargers?latitude=\(latitude)&longitude=\(longitude)&size=\(size)") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
         // subscribe publisher을 background thread로 옮김
