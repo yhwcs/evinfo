@@ -36,6 +36,7 @@ struct MapView: View {
                     .onAppear(){
                         region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: cur_location.latitude, longitude: cur_location.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
                         print(cur_location)
+                        stationList.getStationInformation(latitude: cur_location.latitude, longitude: cur_location.longitude, size: 10)
                     }
 
             // user tracking mode button

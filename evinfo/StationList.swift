@@ -9,22 +9,23 @@ import SwiftUI
 import Combine
 
 class StationList: ObservableObject {
-    init(){
-        //getStationInformation()
-        items.append(exampleA)
-        items.append(exampleB)
-        items.append(exampleC)
+    init() {}
+    init(latitude: Double, longitude: Double, size: Int){
+        getStationInformation(latitude:latitude, longitude:longitude, size:size)
     }
+    /*
+    // using items.append()
     var exampleA = StationListItem(id: 1, stationName: "nameA", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.40754, lng: 126.95355, callNumber: "numA", chargerStat: "statA", distance: 1.0)
     var exampleB = StationListItem(id: 2, stationName: "nameB", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.38845, lng: 126.93124, callNumber: "numA", chargerStat: "statA", distance: 1.0)
     var exampleC = StationListItem(id: 3, stationName: "nameC", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.48299, lng: 126.90871, callNumber: "numA", chargerStat: "statA", distance: 1.0)
+    */
     
     @Published var items: [StationListItem] = []
     var canclelables = Set<AnyCancellable>()
     
     // Method
-    func getStationInformation() {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1/comments") else { return }
+    func getStationInformation(latitude: Double, longitude: Double, size: Int) {
+        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/chargers?latitude=\(latitude)&longitude=\(longitude)&size=\(size)") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
         // subscribe publisher을 background thread로 옮김
