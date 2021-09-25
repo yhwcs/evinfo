@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = GooglePlaces;
+			productName = GooglePlaces;
 		};
 		E5B4BBC6DD552AC8943C7E22772FC1D3 /* GoogleMaps */ = {
 			isa = PBXAggregateTarget;
@@ -24,12 +25,16 @@
 			dependencies = (
 			);
 			name = GoogleMaps;
+			productName = GoogleMaps;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
 		4399153C6E85F4F618D919D8EEABA8EE /* Pods-evinfo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B605A833085DEF29A0CB124A2C06B50E /* Pods-evinfo-dummy.m */; };
 		62BBBD286151E8595E200E5F32D4B94B /* Pods-evinfo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 277ADC6DD9E2B623891F46475A44DA1A /* Pods-evinfo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		809DBBCE26FEC0250002D1EF /* IndexedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBCB26FEC0250002D1EF /* IndexedCollection.swift */; };
+		809DBBCF26FEC0250002D1EF /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBCC26FEC0250002D1EF /* Binding.swift */; };
+		809DBBD026FEC0250002D1EF /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBCD26FEC0250002D1EF /* ForEach.swift */; };
 		FA0C2BEC87222B7990A539B62CF41FBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,10 +68,13 @@
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		761BF2DDDF0A1496F4041742DD5A286F /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 		7EAFD749983A29C8E7FCEE64F0EFFA00 /* Pods-evinfo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-evinfo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		809DBBCB26FEC0250002D1EF /* IndexedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
+		809DBBCC26FEC0250002D1EF /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		809DBBCD26FEC0250002D1EF /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
 		8704E7734F2D03B8EF86CFC319C943BC /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
 		8EBF4D65DD3B0EDCC39AF1C317B7FF1D /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
 		9C729F3714998C7C3F3D788777A06264 /* GooglePlaces.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GooglePlaces.debug.xcconfig; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E830DD9530F13E283DEC78352A2F03D /* GoogleMaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleMaps.release.xcconfig; sourceTree = "<group>"; };
 		A4658982FD89F2A77A672D9AFC716B28 /* GooglePlaces.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GooglePlaces.release.xcconfig; sourceTree = "<group>"; };
 		B605A833085DEF29A0CB124A2C06B50E /* Pods-evinfo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-evinfo-dummy.m"; sourceTree = "<group>"; };
@@ -102,7 +110,6 @@
 				A38D68C78C032F2CEEEEED36818D37F0 /* Maps */,
 				6C8EBDD6FEE473D639E9FF7A802869C0 /* Support Files */,
 			);
-			name = GoogleMaps;
 			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
@@ -131,7 +138,6 @@
 				7DDA47E3D8C82ADCB64F7C6FC9641D65 /* Resources */,
 				3582EF5F85D78C1DB07F01BC0BFA167E /* Support Files */,
 			);
-			name = GooglePlaces;
 			path = GooglePlaces;
 			sourceTree = "<group>";
 		};
@@ -169,6 +175,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		809DBBCA26FEC0250002D1EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				809DBBCB26FEC0250002D1EF /* IndexedCollection.swift */,
+				809DBBCC26FEC0250002D1EF /* Binding.swift */,
+				809DBBCD26FEC0250002D1EF /* ForEach.swift */,
+			);
+			name = Extensions;
+			path = ../evinfo/Extensions;
+			sourceTree = "<group>";
+		};
 		A0130F8303D41C83DF68BE96272D29B9 /* Pods-evinfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +215,7 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
+				809DBBCA26FEC0250002D1EF /* Extensions */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				E858A99A3564099E88E4CF05F26A517D /* Pods */,
@@ -334,7 +352,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				809DBBD026FEC0250002D1EF /* ForEach.swift in Sources */,
 				4399153C6E85F4F618D919D8EEABA8EE /* Pods-evinfo-dummy.m in Sources */,
+				809DBBCF26FEC0250002D1EF /* Binding.swift in Sources */,
+				809DBBCE26FEC0250002D1EF /* IndexedCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
