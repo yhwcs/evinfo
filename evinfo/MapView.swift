@@ -52,7 +52,12 @@ struct MapView: View {
                             trackingMode = .none
                         }
                     }) {
-                        Image(systemName: "location.fill")
+                        if trackingMode == .none {
+                            Image(systemName: "location.fill")
+                        }
+                        else {
+                            Image(systemName: "location")
+                        }
                     }
                     .font(.system(size:25))
                     .foregroundColor(.blue)
