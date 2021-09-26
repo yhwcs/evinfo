@@ -20,28 +20,50 @@ struct MapView: View {
     }
     
     // current location
-    @State private var cur_location = LocationHelper.currentLocation
+    @State private var curLocation = LocationHelper.currentLocation
+    
     // user tracking mode
     @State var trackingMode: MapUserTrackingMode = .none
-    // @EnvironmentObject var curLocation: Location
-    @StateObject var stationList = StationList()
     
+    // station list view flag
+    @State private var showingStationListSheet = false
+
+    @EnvironmentObject var chargerList: ChargerList
+    @EnvironmentObject var stationList: StationList
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(trackingMode), annotationItems: stationList.items) {
+            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(trackingMode), annotationItems: chargerList.items) {
                 items in
                 MapMarker(coordinate: CLLocationCoordinate2D(latitude: items.lat, longitude: items.lng), tint: Color.purple)
             }
-                    .onAppear(){
-                        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: cur_location.latitude, longitude: cur_location.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
-                        print(cur_location)
-                        stationList.getStationInformation(latitude: cur_location.latitude, longitude: cur_location.longitude, size: 30)
-                    }
+            .onAppear(){
+                curLocation = LocationHelper.currentLocation
+                region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
+                print(curLocation)
+                chargerList.getStationInformation(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 30)
+            }
 
             // user tracking mode button
-            VStack{
+            VStack(spacing: 10){
                 Spacer()
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        showingStationListSheet = true
+                    }) {
+                        Image(systemName: "list.bullet")
+                    }
+                    .font(.system(size:25))
+                    .foregroundColor(.blue)
+                    .frame(width: 40, height: 40)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .fullScreenCover(isPresented: $showingStationListSheet, content: {
+                        StationListView().environmentObject(chargerList)
+                            .environmentObject(stationList)
+                    })
+                }
                 HStack{
                     Spacer()
                     Button(action: {

@@ -18,9 +18,13 @@
 		809DBBB926F47BC60002D1EF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBB826F47BC60002D1EF /* MapView.swift */; };
 		809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBBA26F47FC30002D1EF /* LocationHelper.swift */; };
 		809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBBC26F4ADC80002D1EF /* Location.swift */; };
-		809DBBC126F9FB660002D1EF /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC026F9FB660002D1EF /* StationListItem.swift */; };
-		809DBBC326F9FC910002D1EF /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC226F9FC910002D1EF /* StationList.swift */; };
+		809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC026F9FB660002D1EF /* ChargerListItem.swift */; };
+		809DBBC326F9FC910002D1EF /* ChargerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC226F9FC910002D1EF /* ChargerList.swift */; };
 		809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */; };
+		809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBD526FF57A60002D1EF /* StationListView.swift */; };
+		809DBBD826FF78030002D1EF /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBD726FF78030002D1EF /* StationListItem.swift */; };
+		809DBBDA270038870002D1EF /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBD9270038870002D1EF /* StationList.swift */; };
+		809DBBDC27004DFF0002D1EF /* StationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBDB27004DFF0002D1EF /* StationRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,12 +41,16 @@
 		809DBBB826F47BC60002D1EF /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		809DBBBA26F47FC30002D1EF /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		809DBBBC26F4ADC80002D1EF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		809DBBC026F9FB660002D1EF /* StationListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
-		809DBBC226F9FC910002D1EF /* StationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
+		809DBBC026F9FB660002D1EF /* ChargerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerListItem.swift; sourceTree = "<group>"; };
+		809DBBC226F9FC910002D1EF /* ChargerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerList.swift; sourceTree = "<group>"; };
 		809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		809DBBD126FEC0760002D1EF /* IndexedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
 		809DBBD226FEC0760002D1EF /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		809DBBD326FEC0760002D1EF /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
+		809DBBD526FF57A60002D1EF /* StationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListView.swift; sourceTree = "<group>"; };
+		809DBBD726FF78030002D1EF /* StationListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
+		809DBBD9270038870002D1EF /* StationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
+		809DBBDB27004DFF0002D1EF /* StationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRowView.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,10 +93,14 @@
 				809DBBA326F478B10002D1EF /* SceneDelegate.swift */,
 				809DBBA526F478B10002D1EF /* ContentView.swift */,
 				809DBBB826F47BC60002D1EF /* MapView.swift */,
+				809DBBD526FF57A60002D1EF /* StationListView.swift */,
+				809DBBDB27004DFF0002D1EF /* StationRowView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
-				809DBBC226F9FC910002D1EF /* StationList.swift */,
-				809DBBC026F9FB660002D1EF /* StationListItem.swift */,
+				809DBBC226F9FC910002D1EF /* ChargerList.swift */,
+				809DBBC026F9FB660002D1EF /* ChargerListItem.swift */,
+				809DBBD9270038870002D1EF /* StationList.swift */,
+				809DBBD726FF78030002D1EF /* StationListItem.swift */,
 				809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */,
 				809DBBAA26F478B20002D1EF /* Assets.xcassets */,
 				809DBBAF26F478B20002D1EF /* LaunchScreen.storyboard */,
@@ -250,14 +262,18 @@
 			files = (
 				809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */,
 				809DBBA226F478B10002D1EF /* AppDelegate.swift in Sources */,
+				809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */,
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,
-				809DBBC326F9FC910002D1EF /* StationList.swift in Sources */,
+				809DBBC326F9FC910002D1EF /* ChargerList.swift in Sources */,
 				809DBBB926F47BC60002D1EF /* MapView.swift in Sources */,
+				809DBBDC27004DFF0002D1EF /* StationRowView.swift in Sources */,
 				809DBBA926F478B10002D1EF /* evinfo.xcdatamodeld in Sources */,
 				809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */,
-				809DBBC126F9FB660002D1EF /* StationListItem.swift in Sources */,
+				809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */,
+				809DBBD826FF78030002D1EF /* StationListItem.swift in Sources */,
 				809DBBA626F478B10002D1EF /* ContentView.swift in Sources */,
 				809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */,
+				809DBBDA270038870002D1EF /* StationList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,98 +2,48 @@
 //  StationList.swift
 //  evinfo
 //
-//  Created by yhw on 2021/09/21.
+//  Created by yhw on 2021/09/26.
 //
 
-import SwiftUI
-import Combine
+import Foundation
 
-class StationList: ObservableObject {
-    init() {}
-    init(latitude: Double, longitude: Double, size: Int){
-        getStationInformation(latitude:latitude, longitude:longitude, size:size)
-    }
-    /*
-    // using items.append()
-    var exampleA = StationListItem(id: 1, stationName: "nameA", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.40754, lng: 126.95355, callNumber: "numA", chargerStat: "statA", distance: 1.0)
-    var exampleB = StationListItem(id: 2, stationName: "nameB", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.38845, lng: 126.93124, callNumber: "numA", chargerStat: "statA", distance: 1.0)
-    var exampleC = StationListItem(id: 3, stationName: "nameC", stationId: "idA", chargerType: "typeA", address: "addrA", location: "locA", useTime: "timeA", lat: 37.48299, lng: 126.90871, callNumber: "numA", chargerStat: "statA", distance: 1.0)
-    */
-    
+class StationList: ObservableObject  {
     @Published var items: [StationListItem] = []
-    var canclelables = Set<AnyCancellable>()
+    init() { }
     
-    // Method
-    func getStationInformation(latitude: Double, longitude: Double, size: Int) {
-        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/chargers?latitude=\(latitude)&longitude=\(longitude)&size=\(size)") else { return }
-        
-        URLSession.shared.dataTaskPublisher(for: url)
-        // subscribe publisher을 background thread로 옮김
-            .subscribe(on: DispatchQueue.global(qos: .background))
-        // main thread에서 수신
-            .receive(on: DispatchQueue.main)
-        
-            .tryMap(handleOutput)
-            .decode(type: [StationListItem].self, decoder: JSONDecoder())
-       
-            .sink { completion in
-                print("Completion: \(completion)")
-            } receiveValue: { [weak self] StationListItem in
-                self?.items = StationListItem
+    func getStationInfo(chargerList: ChargerList) {
+        var preFlag = false
+        var index = 0
+        for i in 0..<chargerList.items.count {
+            let chargerItem = chargerList.items[i]
+            for j in 0..<items.count {
+                if chargerItem.stationId == items[j].stationId {
+                    preFlag = true
+                    index = j
+                    break
+                }
             }
-        
-        // 필요한 경우 취소
-            .store(in: &canclelables)
-    }
-    
-    func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
-        guard
-            let response = output.response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300 else {
-                throw URLError(.badServerResponse)
+            // new station
+            if preFlag == false{
+                let stationItem = StationListItem()
+                // set station info
+                stationItem.setStationInfo(stationId: chargerItem.stationId, stationName: chargerItem.stationName, address: chargerItem.address, location: chargerItem.location, useTime: chargerItem.useTime, lat: chargerItem.lat, lng: chargerItem.lng, callNumber: chargerItem.callNumber, distance: chargerItem.distance)
+                // add charger info
+                stationItem.addChargerItem(id: chargerItem.chargerId, chargerType: chargerItem.chargerType, chargerStat: chargerItem.chargerStat)
+                items.append(stationItem)
             }
-        return output.data
-    }
-    
-    func printStationListItems() {
-        for item in items {
-            print(item)
+            // the station is already registred
+            else {
+                // add charger info
+                items[index].addChargerItem(id: chargerItem.chargerId, chargerType: chargerItem.chargerType, chargerStat: chargerItem.chargerStat)
+                preFlag = false
+            }
         }
     }
     
-    func deleteListItem(whichElement: IndexSet){
-        items.remove(atOffsets: whichElement)
-        print("delete item: ", whichElement)
-    }
-    
-    func moveListItem(whichElement: IndexSet, destination: Int){
-        items.move(fromOffsets: whichElement, toOffset: destination)
-        print("move item from \(whichElement) to \(destination)")
-    }
-    
-    func documentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let directory = paths[0]
-        print("Documents directory is: \(directory)")
-        return directory
-    }
-    
-    func dataFilePath() -> URL {
-        let filePath = documentsDirectory().appendingPathComponent("StationList.plist")
-        print("Data file path is \(filePath)")
-        return filePath
-    }
-    
-    func saveStationListItems() {
-        let encoder = PropertyListEncoder()
-        
-        do {
-            let data = try encoder.encode(items)
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
-            print("StationList items saved")
-        } catch {
-            print("Error encoding item array: \(error.localizedDescription)")
+    func clearStationList() {
+        for _ in 0..<items.count {
+            items.remove(at: 0)
         }
     }
-    
 }
