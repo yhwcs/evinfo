@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    // @EnvironmentObject var curLocation: Location
+    @StateObject var chargerList = ChargerList()
+    @StateObject var stationList = StationList()
     
     var body: some View {
         MapView()
+            .environmentObject(chargerList)
+            .environmentObject(stationList)
     }
 }
 
