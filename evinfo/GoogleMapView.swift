@@ -4,7 +4,7 @@
 //
 //  Created by yhw on 2021/09/23.
 //
-
+/*
 import SwiftUI
 import GoogleMaps
 
@@ -24,4 +24,4 @@ struct GoogleMapView: UIViewRepresentable {
         
     }
 }
-
+*/
