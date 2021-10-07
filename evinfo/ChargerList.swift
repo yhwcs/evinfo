@@ -92,4 +92,9 @@ class ChargerList: ObservableObject {
         }
     }
     
+    func clearChargerList() {
+        for _ in 0..<items.count {
+            items.remove(at: 0)
+        }
+    }
 }

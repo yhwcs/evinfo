@@ -67,6 +67,22 @@ struct MapView: View {
                 HStack{
                     Spacer()
                     Button(action: {
+                        chargerList.clearChargerList()
+                        curLocation = LocationHelper.currentLocation
+                        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
+                        chargerList.getStationInformation(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 30)
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                    .font(.system(size:25))
+                    .foregroundColor(.blue)
+                    .frame(width: 40, height: 40)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                }
+                HStack{
+                    Spacer()
+                    Button(action: {
                         if trackingMode == .none {
                             trackingMode = .follow
                         }
