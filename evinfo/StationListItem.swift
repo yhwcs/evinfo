@@ -7,7 +7,8 @@
 
 import Foundation
 
-class StationListItem: ObservableObject  {
+class StationListItem: ObservableObject, Identifiable  {
+    let id = UUID()
     var stationId: String = "NULL"
     var stationName: String = "NULL"
     var address: String = "NULL"
@@ -36,6 +37,27 @@ class StationListItem: ObservableObject  {
     func addChargerItem(id: String, chargerType: String, chargerStat: String){
         let item = ChargerItem(id: id, chargerType: chargerType, chargerStat: chargerStat)
         self.chargerItems.append(item)
+    }
+    
+    func copyStation(toItem: StationListItem, fromItem: StationListItem) {
+        toItem.stationId = fromItem.stationId
+        toItem.stationName = fromItem.stationName
+        toItem.address = fromItem.address
+        toItem.location = fromItem.location
+        toItem.useTime = fromItem.useTime
+        toItem.lat = fromItem.lat
+        toItem.lng = fromItem.lng
+        toItem.callNumber = fromItem.callNumber
+        toItem.distance = fromItem.distance
+        
+        for _ in 0..<toItem.chargerItems.count {
+            toItem.chargerItems.remove(at: 0)
+        }
+        
+        for i in 0..<fromItem.chargerItems.count {
+            let item = fromItem.chargerItems[i]
+            toItem.chargerItems.append(item)
+        }
     }
 }
 

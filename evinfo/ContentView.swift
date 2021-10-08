@@ -6,15 +6,18 @@
 //  init
 
 import SwiftUI
+import PartialSheet
 
 struct ContentView: View {
     @StateObject var chargerList = ChargerList()
     @StateObject var stationList = StationList()
+    @StateObject var sheetManager: PartialSheetManager = PartialSheetManager()
     
     var body: some View {
         MapView()
             .environmentObject(chargerList)
             .environmentObject(stationList)
+            .environmentObject(sheetManager)
     }
 }
 

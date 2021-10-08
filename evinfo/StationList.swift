@@ -39,11 +39,13 @@ class StationList: ObservableObject  {
                 preFlag = false
             }
         }
+        print("get station info")
     }
     
     func clearStationList() {
         for _ in 0..<items.count {
             items.remove(at: 0)
         }
+        print("clear station list")
     }
 }

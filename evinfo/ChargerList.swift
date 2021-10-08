@@ -10,17 +10,17 @@ import Combine
 
 class ChargerList: ObservableObject {
     init() {
-        getStationInformation(latitude:37.55108, longitude:126.94096, size:30)
+        getChargerInfo(latitude:37.55108, longitude:126.94096, size:30)
     }
     init(latitude: Double, longitude: Double, size: Int){
-        getStationInformation(latitude:latitude, longitude:longitude, size:size)
+        getChargerInfo(latitude:latitude, longitude:longitude, size:size)
     }
     
     @Published var items: [ChargerListItem] = []
     var canclelables = Set<AnyCancellable>()
     
     // Method
-    func getStationInformation(latitude: Double, longitude: Double, size: Int) {
+    func getChargerInfo(latitude: Double, longitude: Double, size: Int) {
         guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/chargers?latitude=\(latitude)&longitude=\(longitude)&size=\(size)") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
@@ -96,5 +96,6 @@ class ChargerList: ObservableObject {
         for _ in 0..<items.count {
             items.remove(at: 0)
         }
+        print("clear charger list")
     }
 }
