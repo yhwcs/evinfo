@@ -31,7 +31,6 @@ struct MapView: View {
     // station simple view flag
     @State private var showingStationSimpleSheet = false
 
-    @EnvironmentObject var chargerList: ChargerList
     @EnvironmentObject var stationList: StationList
     
     // clicked station marker(pin)
@@ -44,8 +43,9 @@ struct MapView: View {
         ZStack{
             Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(trackingMode), annotationItems: stationList.items) {
                 items in
-                //MapMarker(coordinate: CLLocationCoordinate2D(latitude: items.lat, longitude: items.lng), tint: Color.purple)
-                StationAnnotationProtocol(MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: items.lat, longitude: items.lng)) {
+                StationAnnotationProtocol(MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: items.latitude, longitude: items.longitude)) {
+                    // Station that can charge
+                    if items.state > 0 {
                     Image(systemName: "mappin.circle")
                         .resizable()
                         .frame(width: 30, height: 30)
@@ -55,6 +55,31 @@ struct MapView: View {
                             showingStationSimpleSheet = true
                             print(items.stationName)
                         }
+                    }
+                    // Station that cannot charge
+                    else if items.state == 0 {
+                        Image(systemName: "mappin.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.red)
+                            .onTapGesture {
+                                selectedStation.copyStation(toItem: selectedStation, fromItem: items)
+                                showingStationSimpleSheet = true
+                                print(items.stationName)
+                            }
+                    }
+                    // Station that cannot check
+                    else {
+                        Image(systemName: "mappin.circle")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.orange)
+                            .onTapGesture {
+                                selectedStation.copyStation(toItem: selectedStation, fromItem: items)
+                                showingStationSimpleSheet = true
+                                print(items.stationName)
+                            }
+                    }
                 })
             }
             .partialSheet(isPresented: $showingStationSimpleSheet){
@@ -65,19 +90,13 @@ struct MapView: View {
                 curLocation = LocationHelper.currentLocation
                 region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
                 print(curLocation)
-                chargerList.clearChargerList()
-                stationList.clearStationList()
-                chargerList.getChargerInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 30)
-                if chargerList.items.count > 0 {
-                    stationList.getStationInfo(chargerList: chargerList)
-                }
+                stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
             }
             
             if showingStationSimpleSheet == false {
                 VStack(spacing: 10){
                     Spacer()
-                    HStack{
-                        Spacer()
+                    HStack(spacing: 10){
                         // showing station list view button
                         Button(action: {
                             showingStationListSheet = true
@@ -90,23 +109,19 @@ struct MapView: View {
                         .background(Color.white)
                         .cornerRadius(10)
                         .fullScreenCover(isPresented: $showingStationListSheet, content: {
-                            StationListView().environmentObject(chargerList)
+                            StationListView()
                                 .environmentObject(stationList)
                         })
-                    }
-                    HStack{
                         Spacer()
+                        
                         // refresh button
                         Button(action: {
                             curLocation = LocationHelper.currentLocation
                             region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
-                            chargerList.clearChargerList()
                             stationList.clearStationList()
-                            chargerList.getChargerInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 30)
-                            if chargerList.items.count > 0 {
-                                stationList.getStationInfo(chargerList: chargerList)
-                                print("refresh")
-                            }
+                            stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
+                            stationList.checkStationsState()
+                            print("refresh")
                         }) {
                             Image(systemName: "arrow.clockwise")
                         }
@@ -115,9 +130,7 @@ struct MapView: View {
                         .frame(width: 40, height: 40)
                         .background(Color.white)
                         .cornerRadius(10)
-                    }
-                    HStack{
-                        Spacer()
+
                         // user tracking mode button
                         Button(action: {
                             if trackingMode == .none {

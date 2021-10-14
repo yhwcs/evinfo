@@ -7,36 +7,45 @@
 
 import Foundation
 
-class StationListItem: ObservableObject, Identifiable  {
-    let id = UUID()
-    var stationId: String = "NULL"
-    var stationName: String = "NULL"
-    var address: String = "NULL"
-    var location: String = "NULL"
-    var useTime: String = "NULL"
-    var lat: Double = 0.0
-    var lng: Double = 0.0
-    var callNumber: String = "NULL"
-    var distance: Float = 0.0
+class StationListItem: Identifiable, Codable, ObservableObject {
+    var id = UUID()
+    var stationName: String
+    var stationId: String
+    var address: String
+    var location: String
+    var useTime: String
+    var latitude: Double
+    var longitude: Double
+    var callNumber: String
+    var distance: Float
+    var chargers: [ChargerListItem] = []
+    @Published var state: Int = 1
     
-    @Published var chargerItems: [ChargerItem] = []
-    init() { }
-    
-    func setStationInfo(stationId: String, stationName: String, address: String, location: String, useTime: String, lat: Double, lng: Double, callNumber: String, distance: Float) {
-        self.stationId = stationId
-        self.stationName = stationName
-        self.address = address
-        self.location = location
-        self.useTime = useTime
-        self.lat = lat
-        self.lng = lng
-        self.callNumber = callNumber
-        self.distance = distance
+    // Encode/Decode is performed except for id that allows item to be identification
+    enum CodingKeys: String, CodingKey {
+        case stationName
+        case stationId
+        case address
+        case location
+        case useTime
+        case latitude
+        case longitude
+        case callNumber
+        case distance
+        case chargers
     }
     
-    func addChargerItem(id: String, chargerType: String, chargerStat: String){
-        let item = ChargerItem(id: id, chargerType: chargerType, chargerStat: chargerStat)
-        self.chargerItems.append(item)
+    init(){
+        self.stationId = "NULL"
+        self.stationName = "NULL"
+        self.address = "NULL"
+        self.location = "NULL"
+        self.useTime = "NULL"
+        self.latitude = 37.0
+        self.longitude = 126.9
+        self.callNumber = "NULL"
+        self.distance = 0.0
+        self.state = 0
     }
     
     func copyStation(toItem: StationListItem, fromItem: StationListItem) {
@@ -45,24 +54,34 @@ class StationListItem: ObservableObject, Identifiable  {
         toItem.address = fromItem.address
         toItem.location = fromItem.location
         toItem.useTime = fromItem.useTime
-        toItem.lat = fromItem.lat
-        toItem.lng = fromItem.lng
+        toItem.latitude = fromItem.latitude
+        toItem.longitude = fromItem.longitude
         toItem.callNumber = fromItem.callNumber
         toItem.distance = fromItem.distance
+        toItem.state = fromItem.state
         
-        for _ in 0..<toItem.chargerItems.count {
-            toItem.chargerItems.remove(at: 0)
+        for _ in 0..<toItem.chargers.count {
+            toItem.chargers.remove(at: 0)
         }
         
-        for i in 0..<fromItem.chargerItems.count {
-            let item = fromItem.chargerItems[i]
-            toItem.chargerItems.append(item)
+        for i in 0..<fromItem.chargers.count {
+            let item = fromItem.chargers[i]
+            toItem.chargers.append(item)
         }
     }
-}
+    
+    func checkStationState() {
+        var waitingCharger = 0
+        for i in 0..<self.chargers.count {
+            if self.chargers[i].chargerStat == "WAITING" {
+                waitingCharger += 1
+            }
+            else if self.chargers[i].chargerStat == "CHECKING" {
+                waitingCharger = -1
+                break
+            }
+        }
+        self.state = waitingCharger
+    }
 
-struct ChargerItem: Identifiable {
-    var id: String
-    var chargerType: String
-    var chargerStat: String
 }

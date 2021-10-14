@@ -15,32 +15,64 @@ struct StationRowView: View {
             HStack{
                 Text(stationListItem.stationName)
                     .font(.title3)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blue)
                 Spacer()
             }
             HStack{
                 Text(stationListItem.address)
-                .font(.subheadline)
+                    .font(.subheadline)
                     .foregroundColor(.gray)
+                Spacer()
+            }
+            HStack{
+                if stationListItem.distance < 1.0 {
+                    Text("\(Int(round(stationListItem.distance * 1000)))m")
+                        .font(.callout)
+                        .foregroundColor(.red)
+                }
+                else {
+                    Text(String(format: "%.1f", stationListItem.distance) + "km")
+                        .font(.callout)
+                        .foregroundColor(.red)
+                }
                 Spacer()
             }
             if stationListItem.useTime.count > 0 {
                 HStack{
                     Image(systemName: "clock")
                     Text(stationListItem.useTime)
-                    .font(.callout)
+                        .font(.callout)
                     Spacer()
                 }
             }
-            ForEach(0..<stationListItem.chargerItems.count){
-            i in
-                HStack{
-                    Image(systemName: "bolt.fill")
+            HStack{
+                if stationListItem.state > 0 {
+                    Text("충전 가능")
+                        .font(.headline)
                         .foregroundColor(.green)
-                    Text("\(stationListItem.chargerItems[i].id) : \(stationListItem.chargerItems[i].chargerStat)")
-                    Spacer()
                 }
-            }
+                else if stationListItem.state == 0 {
+                    Text("충전 불가")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                }
+                else {
+                    Text("확인 불가")
+                        .font(.headline)
+                        .foregroundColor(.orange)
+                }
+                Spacer()
+                if stationListItem.chargers[0].isACSlow {
+                    Text("완속 ")
+                        .font(.headline)
+                }
+                else {
+                    Text("급속 ")
+                        .font(.headline)
+                }
+                Text("\(stationListItem.state) / \(stationListItem.chargers.count)")
+                    .font(.headline)
+            }.padding(.bottom, 20)
             Spacer()
         }
         // onTapGesture occurs even if press the blank space

@@ -19,7 +19,6 @@
 		809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBBA26F47FC30002D1EF /* LocationHelper.swift */; };
 		809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBBC26F4ADC80002D1EF /* Location.swift */; };
 		809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC026F9FB660002D1EF /* ChargerListItem.swift */; };
-		809DBBC326F9FC910002D1EF /* ChargerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC226F9FC910002D1EF /* ChargerList.swift */; };
 		809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */; };
 		809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBD526FF57A60002D1EF /* StationListView.swift */; };
 		809DBBD826FF78030002D1EF /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBD726FF78030002D1EF /* StationListItem.swift */; };
@@ -45,7 +44,6 @@
 		809DBBBA26F47FC30002D1EF /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		809DBBBC26F4ADC80002D1EF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		809DBBC026F9FB660002D1EF /* ChargerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerListItem.swift; sourceTree = "<group>"; };
-		809DBBC226F9FC910002D1EF /* ChargerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerList.swift; sourceTree = "<group>"; };
 		809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		809DBBD126FEC0760002D1EF /* IndexedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
 		809DBBD226FEC0760002D1EF /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				809DBBE1270F07E50002D1EF /* StationSimpleView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
-				809DBBC226F9FC910002D1EF /* ChargerList.swift */,
 				809DBBC026F9FB660002D1EF /* ChargerListItem.swift */,
 				809DBBD9270038870002D1EF /* StationList.swift */,
 				809DBBD726FF78030002D1EF /* StationListItem.swift */,
@@ -279,7 +276,6 @@
 				809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */,
 				809DBBE0270EFE5A0002D1EF /* StationAnnotationProtocol.swift in Sources */,
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,
-				809DBBC326F9FC910002D1EF /* ChargerList.swift in Sources */,
 				809DBBB926F47BC60002D1EF /* MapView.swift in Sources */,
 				809DBBDC27004DFF0002D1EF /* StationRowView.swift in Sources */,
 				809DBBA926F478B10002D1EF /* evinfo.xcdatamodeld in Sources */,
