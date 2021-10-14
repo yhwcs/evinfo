@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StationListView: View {
-    @EnvironmentObject var chargerList: ChargerList
     @EnvironmentObject var stationList: StationList
     
     // dismiss view flag
@@ -41,9 +40,6 @@ struct StationListView: View {
             }
         }
         .onAppear() {
-            stationList.clearStationList()
-            stationList.getStationInfo(chargerList: chargerList)
-            print(stationList.items.count)
             stationListCount = stationList.items.count
         }
     } // End of View

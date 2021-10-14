@@ -11,8 +11,6 @@ struct StationSimpleView: View {
 
     @EnvironmentObject var selectedStation: StationListItem
     
-    @State var waitingCharger = 0
-    
     var body: some View {
         VStack(spacing: 10){
             HStack{
@@ -36,30 +34,46 @@ struct StationSimpleView: View {
                 }.padding(.horizontal, 20)
             }
             HStack{
-                if waitingCharger > 0 {
+                if selectedStation.distance < 1.0 {
+                    Text("\(Int(round(selectedStation.distance * 1000)))m")
+                        .font(.callout)
+                        .foregroundColor(.red)
+                }
+                else {
+                    Text(String(format: "%.1f", selectedStation.distance) + "km")
+                        .font(.callout)
+                        .foregroundColor(.red)
+                }
+                Spacer()
+            }.padding(.horizontal, 20)
+            HStack{
+                if selectedStation.state > 0 {
                     Text("충전 가능")
                         .font(.headline)
                         .foregroundColor(.green)
                 }
-                else {
+                else if selectedStation.state == 0 {
                     Text("충전 불가")
                         .font(.headline)
                         .foregroundColor(.red)
                 }
-                Spacer()
-                Text("\(waitingCharger) / \(selectedStation.chargerItems.count)")
-            }.padding(.horizontal, 20)
-            /*
-            ForEach(0..<selectedStation.chargerItems.count) {
-                i in
-                HStack{
-                    Image(systemName: "bolt.fill")
-                        .foregroundColor(.green)
-                    Text("\(selectedStation.chargerItems[i].id) : \(selectedStation.chargerItems[i].chargerStat)")
-                    Spacer()
+                else {
+                    Text("확인 불가")
+                        .font(.headline)
+                        .foregroundColor(.orange)
                 }
-            }
-            */
+                Spacer()
+                if selectedStation.chargers[0].isACSlow {
+                    Text("완속 ")
+                        .font(.headline)
+                }
+                else {
+                    Text("급속 ")
+                        .font(.headline)
+                }
+                Text("\(selectedStation.state) / \(selectedStation.chargers.count)")
+                    .font(.headline)
+            }.padding(.horizontal, 20)
              
         }.padding(.bottom, 20)
         // onTapGesture occurs even if press the blank space
@@ -68,14 +82,9 @@ struct StationSimpleView: View {
             print("simple view -> detail view")
         }
         .onAppear(){
-            for i in 0..<selectedStation.chargerItems.count {
-                if selectedStation.chargerItems[i].chargerStat == "WAITING" {
-                    self.waitingCharger += 1
-                }
-            }
+            print(selectedStation.state)
         }
         .onDisappear(){
-            self.waitingCharger = 0
             print("dismiss \(selectedStation.stationName) simple view")
         }
     }

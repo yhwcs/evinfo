@@ -9,32 +9,20 @@ import Foundation
 
 struct ChargerListItem: Identifiable, Codable {
     var id = UUID()
-    var stationName: String
-    var stationId: String
     var chargerId: String
-    var chargerType: String
-    var address: String
-    var location: String
-    var useTime: String
-    var lat: Double
-    var lng: Double
-    var callNumber: String
+    var isDCCombo: Bool
+    var isDCDemo: Bool
+    var isAC3: Bool
+    var isACSlow: Bool
     var chargerStat: String
-    var distance: Float
     
     // Encode/Decode is performed except for id that allows item to be identification
     enum CodingKeys: String, CodingKey {
-        case stationName
-        case stationId
         case chargerId
-        case chargerType
-        case address
-        case location
-        case useTime
-        case lat
-        case lng
-        case callNumber
+        case isDCCombo
+        case isDCDemo
+        case isAC3
+        case isACSlow
         case chargerStat
-        case distance
     }
 }

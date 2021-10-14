@@ -6,46 +6,64 @@
 //
 
 import Foundation
+import Combine
 
 class StationList: ObservableObject  {
-    @Published var items: [StationListItem] = []
-    init() { }
-    
-    func getStationInfo(chargerList: ChargerList) {
-        var preFlag = false
-        var index = 0
-        for i in 0..<chargerList.items.count {
-            let chargerItem = chargerList.items[i]
-            for j in 0..<items.count {
-                if chargerItem.stationId == items[j].stationId {
-                    preFlag = true
-                    index = j
-                    break
-                }
-            }
-            // new station
-            if preFlag == false{
-                let stationItem = StationListItem()
-                // set station info
-                stationItem.setStationInfo(stationId: chargerItem.stationId, stationName: chargerItem.stationName, address: chargerItem.address, location: chargerItem.location, useTime: chargerItem.useTime, lat: chargerItem.lat, lng: chargerItem.lng, callNumber: chargerItem.callNumber, distance: chargerItem.distance)
-                // add charger info
-                stationItem.addChargerItem(id: chargerItem.chargerId, chargerType: chargerItem.chargerType, chargerStat: chargerItem.chargerStat)
-                items.append(stationItem)
-            }
-            // the station is already registred
-            else {
-                // add charger info
-                items[index].addChargerItem(id: chargerItem.chargerId, chargerType: chargerItem.chargerType, chargerStat: chargerItem.chargerStat)
-                preFlag = false
-            }
-        }
-        print("get station info")
+    init() {
+        getStationInfo(latitude:37.55108, longitude:126.94096, size:10)
+    }
+    init(latitude: Double, longitude: Double, size: Int){
+        getStationInfo(latitude:latitude, longitude:longitude, size:size)
     }
     
+    @Published var items: [StationListItem] = []
+    var canclelables = Set<AnyCancellable>()
+    
+    // Method
+    func getStationInfo(latitude: Double, longitude: Double, size: Int) {
+        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/stations?latitude=\(latitude)&longitude=\(longitude)&size=\(size)") else { return }
+        
+        URLSession.shared.dataTaskPublisher(for: url)
+        // subscribe publisher을 background thread로 옮김
+            .subscribe(on: DispatchQueue.global(qos: .background))
+        // main thread에서 수신
+            .receive(on: DispatchQueue.main)
+        
+            .tryMap(handleOutput)
+            .decode(type: [StationListItem].self, decoder: JSONDecoder())
+       
+            .sink { completion in
+                print("Completion: \(completion)")
+                self.checkStationsState()
+            } receiveValue: { [weak self] StationListItem in
+                self?.items = StationListItem
+            }
+        
+        // 필요한 경우 취소
+            .store(in: &canclelables)
+        
+        print("get Stations Information")
+    }
+    
+    func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard
+            let response = output.response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+                throw URLError(.badServerResponse)
+            }
+        return output.data
+    }
     func clearStationList() {
         for _ in 0..<items.count {
             items.remove(at: 0)
         }
         print("clear station list")
     }
+    
+    func checkStationsState() {
+        for i in 0..<items.count {
+            items[i].checkStationState()
+        }
+    }
 }
+
