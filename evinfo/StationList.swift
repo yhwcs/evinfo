@@ -34,7 +34,6 @@ class StationList: ObservableObject  {
        
             .sink { completion in
                 print("Completion: \(completion)")
-                self.checkStationsState()
             } receiveValue: { [weak self] StationListItem in
                 self?.items = StationListItem
             }
@@ -58,12 +57,6 @@ class StationList: ObservableObject  {
             items.remove(at: 0)
         }
         print("clear station list")
-    }
-    
-    func checkStationsState() {
-        for i in 0..<items.count {
-            items[i].checkStationState()
-        }
     }
 }
 

@@ -36,7 +36,7 @@ struct MapView: View {
     // clicked station marker(pin)
     @StateObject var selectedStation = StationListItem()
     
-    // partial sheet (Station Simple View) manager
+    // partial sheet (Station List / Simple View) manager
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     
     var body: some View {
@@ -45,7 +45,7 @@ struct MapView: View {
                 items in
                 StationAnnotationProtocol(MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: items.latitude, longitude: items.longitude)) {
                     // Station that can charge
-                    if items.state > 0 {
+                    if items.enableChargers > 0 {
                     Image(systemName: "mappin.circle")
                         .resizable()
                         .frame(width: 30, height: 30)
@@ -57,7 +57,7 @@ struct MapView: View {
                         }
                     }
                     // Station that cannot charge
-                    else if items.state == 0 {
+                    else if items.enableChargers == 0 {
                         Image(systemName: "mappin.circle")
                             .resizable()
                             .frame(width: 30, height: 30)
@@ -93,7 +93,7 @@ struct MapView: View {
                 stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
             }
             
-            if showingStationSimpleSheet == false {
+            if showingStationSimpleSheet == false && showingStationListSheet == false {
                 VStack(spacing: 10){
                     Spacer()
                     HStack(spacing: 10){
@@ -108,10 +108,11 @@ struct MapView: View {
                         .frame(width: 40, height: 40)
                         .background(Color.white)
                         .cornerRadius(10)
-                        .fullScreenCover(isPresented: $showingStationListSheet, content: {
+                        .partialSheet(isPresented: $showingStationListSheet){
                             StationListView()
                                 .environmentObject(stationList)
-                        })
+                                .environmentObject(selectedStation)
+                        }
                         Spacer()
                         
                         // refresh button
@@ -120,7 +121,6 @@ struct MapView: View {
                             region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
                             stationList.clearStationList()
                             stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
-                            stationList.checkStationsState()
                             print("refresh")
                         }) {
                             Image(systemName: "arrow.clockwise")

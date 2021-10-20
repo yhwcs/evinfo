@@ -15,6 +15,8 @@ struct ChargerListItem: Identifiable, Codable {
     var isAC3: Bool
     var isACSlow: Bool
     var chargerStat: String
+    var output: Int
+    var price: Float
     
     // Encode/Decode is performed except for id that allows item to be identification
     enum CodingKeys: String, CodingKey {
@@ -24,5 +26,7 @@ struct ChargerListItem: Identifiable, Codable {
         case isAC3
         case isACSlow
         case chargerStat
+        case output
+        case price
     }
 }
