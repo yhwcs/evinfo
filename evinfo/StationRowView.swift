@@ -10,6 +10,11 @@ import SwiftUI
 struct StationRowView: View {
     @Binding var stationListItem: StationListItem
     
+    @EnvironmentObject var selectedStation: StationListItem
+    
+    // station detail view flag
+    @State private var showingStationDetailSheet = false
+    
     var body: some View {
         VStack{
             HStack{
@@ -46,12 +51,12 @@ struct StationRowView: View {
                 }
             }
             HStack{
-                if stationListItem.state > 0 {
+                if stationListItem.enableChargers > 0 {
                     Text("충전 가능")
                         .font(.headline)
                         .foregroundColor(.green)
                 }
-                else if stationListItem.state == 0 {
+                else if stationListItem.enableChargers == 0 {
                     Text("충전 불가")
                         .font(.headline)
                         .foregroundColor(.red)
@@ -70,7 +75,7 @@ struct StationRowView: View {
                     Text("급속 ")
                         .font(.headline)
                 }
-                Text("\(stationListItem.state) / \(stationListItem.chargers.count)")
+                Text("\(stationListItem.enableChargers) / \(stationListItem.chargers.count)")
                     .font(.headline)
             }.padding(.bottom, 20)
             Spacer()
@@ -79,7 +84,12 @@ struct StationRowView: View {
         .background(Color.white)
         .onTapGesture {
             print(stationListItem.stationName)
+            selectedStation.copyStation(toItem: selectedStation, fromItem: stationListItem)
+            self.showingStationDetailSheet = true
         }
+        .fullScreenCover(isPresented: $showingStationDetailSheet, content: {
+            StationDetailView().environmentObject(selectedStation)
+        })
     }
 }
 /*

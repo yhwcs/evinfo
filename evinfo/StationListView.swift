@@ -8,40 +8,28 @@
 import SwiftUI
 
 struct StationListView: View {
+
     @EnvironmentObject var stationList: StationList
+    @EnvironmentObject var selectedStation: StationListItem
     
     // dismiss view flag
     @Environment(\.presentationMode) var presentationMode
     
-    @State var stationListCount = 0
-    
     var body: some View {
         VStack{
-            HStack{
-                // dismiss view button
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.title)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        .padding(10)
-                }
-                Spacer()
-            }
             // show station list
             List{
                 VStack{
-                    ForEach(0..<stationListCount){
+                    ForEach(0..<stationList.items.count){
                     index in
-                        StationRowView(stationListItem: $stationList.items[index])
+                            StationRowView(stationListItem: $stationList.items[index])
+                                .environmentObject(selectedStation)
+                                .background(Color.white)
                     } // End of ForEach
                 }
             }
         }
-        .onAppear() {
-            stationListCount = stationList.items.count
-        }
+        .background(Color.white)
     } // End of View
 }
 /*

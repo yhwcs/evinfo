@@ -27,6 +27,7 @@
 		809DBBE0270EFE5A0002D1EF /* StationAnnotationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */; };
 		809DBBE2270F07E50002D1EF /* StationSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBE1270F07E50002D1EF /* StationSimpleView.swift */; };
 		809DBBE5270F2B750002D1EF /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 809DBBE4270F2B750002D1EF /* PartialSheet */; };
+		809DBBE7271846350002D1EF /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBE6271846350002D1EF /* StationDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		809DBBDB27004DFF0002D1EF /* StationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRowView.swift; sourceTree = "<group>"; };
 		809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnotationProtocol.swift; sourceTree = "<group>"; };
 		809DBBE1270F07E50002D1EF /* StationSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSimpleView.swift; sourceTree = "<group>"; };
+		809DBBE6271846350002D1EF /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 				809DBBD526FF57A60002D1EF /* StationListView.swift */,
 				809DBBDB27004DFF0002D1EF /* StationRowView.swift */,
 				809DBBE1270F07E50002D1EF /* StationSimpleView.swift */,
+				809DBBE6271846350002D1EF /* StationDetailView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
 				809DBBC026F9FB660002D1EF /* ChargerListItem.swift */,
@@ -273,6 +276,7 @@
 			files = (
 				809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */,
 				809DBBA226F478B10002D1EF /* AppDelegate.swift in Sources */,
+				809DBBE7271846350002D1EF /* StationDetailView.swift in Sources */,
 				809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */,
 				809DBBE0270EFE5A0002D1EF /* StationAnnotationProtocol.swift in Sources */,
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,

@@ -17,9 +17,10 @@ class StationListItem: Identifiable, Codable, ObservableObject {
     var latitude: Double
     var longitude: Double
     var callNumber: String
+    var businessName: String
     var distance: Float
+    var enableChargers: Int
     var chargers: [ChargerListItem] = []
-    @Published var state: Int = 1
     
     // Encode/Decode is performed except for id that allows item to be identification
     enum CodingKeys: String, CodingKey {
@@ -31,7 +32,9 @@ class StationListItem: Identifiable, Codable, ObservableObject {
         case latitude
         case longitude
         case callNumber
+        case businessName
         case distance
+        case enableChargers
         case chargers
     }
     
@@ -44,8 +47,9 @@ class StationListItem: Identifiable, Codable, ObservableObject {
         self.latitude = 37.0
         self.longitude = 126.9
         self.callNumber = "NULL"
+        self.businessName = "NULL"
         self.distance = 0.0
-        self.state = 0
+        self.enableChargers = 0
     }
     
     func copyStation(toItem: StationListItem, fromItem: StationListItem) {
@@ -57,8 +61,9 @@ class StationListItem: Identifiable, Codable, ObservableObject {
         toItem.latitude = fromItem.latitude
         toItem.longitude = fromItem.longitude
         toItem.callNumber = fromItem.callNumber
+        toItem.businessName = fromItem.businessName
         toItem.distance = fromItem.distance
-        toItem.state = fromItem.state
+        toItem.enableChargers = fromItem.enableChargers
         
         for _ in 0..<toItem.chargers.count {
             toItem.chargers.remove(at: 0)
@@ -69,19 +74,4 @@ class StationListItem: Identifiable, Codable, ObservableObject {
             toItem.chargers.append(item)
         }
     }
-    
-    func checkStationState() {
-        var waitingCharger = 0
-        for i in 0..<self.chargers.count {
-            if self.chargers[i].chargerStat == "WAITING" {
-                waitingCharger += 1
-            }
-            else if self.chargers[i].chargerStat == "CHECKING" {
-                waitingCharger = -1
-                break
-            }
-        }
-        self.state = waitingCharger
-    }
-
 }
