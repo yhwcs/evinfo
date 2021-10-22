@@ -82,6 +82,16 @@ struct StationDetailView: View {
                                     .font(.headline)
                                     .foregroundColor(.red)
                             }
+                            else if selectedStation.chargers[i].chargerStat == "STOPPED" {
+                                Text("운영 중지")
+                                    .font(.headline)
+                                    .foregroundColor(.orange)
+                            }
+                            else if selectedStation.chargers[i].chargerStat == "CHECKING" {
+                                Text("점검 진행")
+                                    .font(.headline)
+                                    .foregroundColor(.orange)
+                            }
                             else {
                                 Text("확인 불가")
                                     .font(.headline)
