@@ -42,12 +42,12 @@ struct StationSimpleView: View {
                 }
                 HStack{
                     if selectedStation.distance < 1.0 {
-                        Text("\(Int(round(selectedStation.distance * 1000)))m")
+                        Text("\(Int(round(selectedStation.distance * 1000)))m | 1kWh당 "+String(format: "%.1f", selectedStation.chargers[0].price)+"원")
                             .font(.callout)
                             .foregroundColor(.red)
                     }
                     else {
-                        Text(String(format: "%.1f", selectedStation.distance) + "km")
+                        Text(String(format: "%.1f", selectedStation.distance) + "km | 1kWh당 "+String(format: "%.1f", selectedStation.chargers[0].price)+"원")
                             .font(.callout)
                             .foregroundColor(.red)
                     }

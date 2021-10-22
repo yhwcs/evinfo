@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StationListItem: Identifiable, Codable, ObservableObject {
+class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
     var id = UUID()
     var stationName: String
     var stationId: String
@@ -72,6 +72,20 @@ class StationListItem: Identifiable, Codable, ObservableObject {
         for i in 0..<fromItem.chargers.count {
             let item = fromItem.chargers[i]
             toItem.chargers.append(item)
+        }
+    }
+    
+    // comparison between stations is based on the price
+    static func < (lhs: StationListItem, rhs: StationListItem) -> Bool {
+        return lhs.chargers[0].price < rhs.chargers[0].price
+    }
+    
+    static func == (lhs: StationListItem, rhs: StationListItem) -> Bool {
+        if lhs.chargers.count > 0 && rhs.chargers.count > 0 {
+            return lhs.chargers[0].price == rhs.chargers[0].price
+        }
+        else {
+            return false
         }
     }
 }
