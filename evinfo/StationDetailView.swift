@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import UIKit
+import NMapsMap
 
 struct StationDetailView: View {
     
     @EnvironmentObject var selectedStation: StationListItem
+    
+    @EnvironmentObject var startLocation: Location
     
     // dismiss view flag
     @Environment(\.presentationMode) var presentationMode
@@ -65,6 +69,18 @@ struct StationDetailView: View {
                             Text(selectedStation.useTime)
                             .font(.callout)
                             Spacer()
+                        }
+                    }
+                    
+                    // route guidance button
+                    HStack{
+                        Button(action: {
+                            callNMap()
+                        }) {
+                            HStack{
+                                Text("경로 안내")
+                                Spacer()
+                            }
                         }
                     }
                     
@@ -143,6 +159,19 @@ struct StationDetailView: View {
             }.padding(.horizontal, 20)
         }
     }
+    
+    func callNMap(){
+        let dname = selectedStation.stationName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: "nmap://route/car?dlat=\(selectedStation.latitude)&dlng=\(selectedStation.longitude)&dname=\(dname)&appname=EVFinder")!
+        let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8")!
+        
+        if UIApplication.shared.canOpenURL(url){
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.open(appStoreURL)
+        }
+    }
+    
 }
 
 struct StationDetailView_Previews: PreviewProvider {

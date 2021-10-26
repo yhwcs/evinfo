@@ -11,6 +11,8 @@ struct StationSimpleView: View {
 
     @EnvironmentObject var selectedStation: StationListItem
     
+    @EnvironmentObject var startLocation: Location
+    
     // station detail view flag
     @State private var showingStationDetailSheet = false
     
@@ -85,7 +87,9 @@ struct StationSimpleView: View {
             }.padding(.bottom, 20)
         }
         .fullScreenCover(isPresented: $showingStationDetailSheet, content: {
-            StationDetailView().environmentObject(selectedStation)
+            StationDetailView()
+                .environmentObject(selectedStation)
+                .environmentObject(startLocation)
         })
         .onDisappear(){
             print("dismiss \(selectedStation.stationName) simple view")

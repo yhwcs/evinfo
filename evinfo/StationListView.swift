@@ -24,6 +24,7 @@ struct StationListView: View {
     // dismiss view flag
     @Environment(\.presentationMode) var presentationMode
     
+    @EnvironmentObject var startLocation: Location
     
     var body: some View {
         VStack{
@@ -68,6 +69,7 @@ struct StationListView: View {
                         index in
                                 StationRowView(stationListItem: $stationList.items[index])
                                     .environmentObject(selectedStation)
+                                    .environmentObject(startLocation)
                                     .background(Color.white)
                         }
                     }
