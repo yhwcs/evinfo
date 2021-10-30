@@ -12,6 +12,8 @@ struct StationRowView: View {
     
     @EnvironmentObject var selectedStation: StationListItem
     
+    @EnvironmentObject var startLocation: Location
+    
     // station detail view flag
     @State private var showingStationDetailSheet = false
     
@@ -88,7 +90,9 @@ struct StationRowView: View {
             self.showingStationDetailSheet = true
         }
         .fullScreenCover(isPresented: $showingStationDetailSheet, content: {
-            StationDetailView().environmentObject(selectedStation)
+            StationDetailView()
+                .environmentObject(selectedStation)
+                .environmentObject(startLocation)
         })
     }
 }

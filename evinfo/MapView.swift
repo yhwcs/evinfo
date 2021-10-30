@@ -22,6 +22,7 @@ struct MapView: View {
     
     // current location
     @State private var curLocation = LocationHelper.currentLocation
+    @StateObject var startLocation = Location()
     
     // user tracking mode
     @State var trackingMode: MapUserTrackingMode = .none
@@ -83,7 +84,9 @@ struct MapView: View {
                 })
             }
             .partialSheet(isPresented: $showingStationSimpleSheet){
-                StationSimpleView().environmentObject(selectedStation)
+                StationSimpleView()
+                    .environmentObject(selectedStation)
+                    .environmentObject(startLocation)
             }
             .addPartialSheet()
             .onAppear(){
@@ -91,6 +94,7 @@ struct MapView: View {
                 region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
                 print(curLocation)
                 stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
+                startLocation.setLocation(lat: curLocation.latitude, long: curLocation.longitude)
             }
             
             if showingStationSimpleSheet == false && showingStationListSheet == false {
@@ -112,6 +116,7 @@ struct MapView: View {
                             StationListView()
                                 .environmentObject(stationList)
                                 .environmentObject(selectedStation)
+                                .environmentObject(startLocation)
                         }
                         Spacer()
                         
@@ -121,6 +126,7 @@ struct MapView: View {
                             region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
                             stationList.clearStationList()
                             stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
+                            startLocation.setLocation(lat: curLocation.latitude, long: curLocation.longitude)
                             print("refresh")
                         }) {
                             Image(systemName: "arrow.clockwise")

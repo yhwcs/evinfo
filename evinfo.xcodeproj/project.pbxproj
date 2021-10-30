@@ -28,7 +28,23 @@
 		809DBBE2270F07E50002D1EF /* StationSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBE1270F07E50002D1EF /* StationSimpleView.swift */; };
 		809DBBE5270F2B750002D1EF /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 809DBBE4270F2B750002D1EF /* PartialSheet */; };
 		809DBBE7271846350002D1EF /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBE6271846350002D1EF /* StationDetailView.swift */; };
+		80B844F8272D350D00AA07C8 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B844F6272D350400AA07C8 /* TMapSDK.framework */; };
+		80B844F9272D350D00AA07C8 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80B844F6272D350400AA07C8 /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		80B844F5272D2FDB00AA07C8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				80B844F9272D350D00AA07C8 /* TMapSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		45AFFEE87139DE5FCA5B16B0 /* Pods_evinfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_evinfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +72,7 @@
 		809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnotationProtocol.swift; sourceTree = "<group>"; };
 		809DBBE1270F07E50002D1EF /* StationSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSimpleView.swift; sourceTree = "<group>"; };
 		809DBBE6271846350002D1EF /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
+		80B844F6272D350400AA07C8 /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +84,7 @@
 			files = (
 				809DBBE5270F2B750002D1EF /* PartialSheet in Frameworks */,
 				034460B20287EBF6D9848AC2 /* Pods_evinfo.framework in Frameworks */,
+				80B844F8272D350D00AA07C8 /* TMapSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +167,7 @@
 		C4C76B9C69C14F12A8707911 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80B844F6272D350400AA07C8 /* TMapSDK.framework */,
 				45AFFEE87139DE5FCA5B16B0 /* Pods_evinfo.framework */,
 			);
 			name = Frameworks;
@@ -166,6 +185,8 @@
 				809DBB9B26F478B10002D1EF /* Frameworks */,
 				809DBB9C26F478B10002D1EF /* Resources */,
 				5EED00506595A97FA5249148 /* [CP] Copy Pods Resources */,
+				168F934E3F4D3ED78CBB0DA8 /* [CP] Embed Pods Frameworks */,
+				80B844F5272D2FDB00AA07C8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,6 +249,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		168F934E3F4D3ED78CBB0DA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2B41D519A73885689F2D80FC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,6 +471,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"evinfo/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y3Z2Z567H;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = evinfo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -442,6 +484,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
@@ -455,6 +498,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"evinfo/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y3Z2Z567H;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = evinfo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -464,6 +511,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};

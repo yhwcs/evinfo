@@ -10,4 +10,7 @@ target 'evinfo' do
 	pod 'GoogleMaps'
 	pod 'GooglePlaces'
 	#Pods for GoogleMapApi
+	pod 'NMapsMap'
+	#Pods for NaverMapApi
+
 end
