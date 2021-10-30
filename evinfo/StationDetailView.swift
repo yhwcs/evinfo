@@ -8,15 +8,20 @@
 import SwiftUI
 import UIKit
 import NMapsMap
+import TMapSDK
 
 struct StationDetailView: View {
     
     @EnvironmentObject var selectedStation: StationListItem
     
+    // current location for Kakao Map API
     @EnvironmentObject var startLocation: Location
     
     // dismiss view flag
     @Environment(\.presentationMode) var presentationMode
+    
+    // sheet showing flag for selecting a route guidance application
+    @State private var showingSelectionSheet = false
     
     var body: some View {
         VStack {
@@ -46,6 +51,31 @@ struct StationDetailView: View {
                             .foregroundColor(.gray)
                         Spacer()
                     }
+                    
+                    // route guidance button
+                    HStack{
+                        Button(action: {
+                            self.showingSelectionSheet.toggle()
+                        }) {
+                            HStack{
+                                HStack{
+                                    Image(systemName: "car.fill")
+                                    Text("경로 안내")
+                                }
+                                .padding(10)
+                                .foregroundColor(.white)
+                                .background(Color.blue)
+                                .cornerRadius(30)
+                                .padding(.trailing, 10)
+                                Spacer()
+                            }
+                        }
+                        // sheet for selecting a route guidance application
+                        .actionSheet(isPresented: $showingSelectionSheet, content: {
+                            ActionSheet(title: Text("경로 안내 어플리케이션").font(.headline), message: Text("해당 충전소로 안내할 어플리케이션을 선택해주세요."), buttons: [.default(Text("네이버 맵 (Naver Map)"), action: callNMap), .default(Text("카카오 맵 (Kakao Map)"), action: callKMap), .default(Text("티 맵 (T Map)"), action: callTMap), .cancel(Text("취소"))])
+                        })
+                    }
+                    
                     HStack{
                         Image(systemName: "phone.fill")
                         Text(selectedStation.callNumber)
@@ -69,18 +99,6 @@ struct StationDetailView: View {
                             Text(selectedStation.useTime)
                             .font(.callout)
                             Spacer()
-                        }
-                    }
-                    
-                    // route guidance button
-                    HStack{
-                        Button(action: {
-                            callKMap(startLocation: startLocation)
-                        }) {
-                            HStack{
-                                Text("경로 안내")
-                                Spacer()
-                            }
                         }
                     }
                     
@@ -160,6 +178,7 @@ struct StationDetailView: View {
         }
     }
     
+    // call Naver Map for route guidance
     func callNMap(){
         let dname = selectedStation.stationName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: "nmap://route/car?dlat=\(selectedStation.latitude)&dlng=\(selectedStation.longitude)&dname=\(dname)&appname=EVFinder")!
@@ -172,7 +191,8 @@ struct StationDetailView: View {
         }
     }
     
-    func callKMap(startLocation: Location){
+    // call Kakao Map for route guidance
+    func callKMap(){
         let url = URL(string: "kakaomap://route?sp=\(startLocation.latitude),\(startLocation.longitude)&ep=\(selectedStation.latitude),\(selectedStation.longitude)&by=CAR")!
         let appStoreURL = URL(string: "http://itunes.apple.com/app/id304608425")!
         
@@ -183,6 +203,33 @@ struct StationDetailView: View {
         }
     }
     
+    // call T Map for route guidance
+    func callTMap(){
+        var delegate = TMapDelegate()
+        delegate.OpenTMap(selectedStation: selectedStation)
+    }
+    
+    class TMapDelegate: TMapTapiDelegate {
+        init(){
+            TMapApi.setSKTMapAuthenticationWithDelegate(self, apiKey: "l7xx315f78113c2d44f8ab3b9715cfa05453")
+        }
+        
+        func SKTMapApikeySucceed(){
+                print("TMap Authentication succeed!")
+        }
+        
+        func OpenTMap(selectedStation: StationListItem){
+            let url = URL(string: "tmap://?rGoName=\(selectedStation.stationName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)&rGoX=\(selectedStation.longitude)&rGoY=\(selectedStation.latitude)")!
+            let appStoreURL = TMapApi.getTMapDownUrl()
+            
+            if UIApplication.shared.canOpenURL(url){
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.open(URL(string: appStoreURL)!)
+            }
+        }
+    }
+ 
 }
 
 struct StationDetailView_Previews: PreviewProvider {
