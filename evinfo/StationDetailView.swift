@@ -75,7 +75,7 @@ struct StationDetailView: View {
                     // route guidance button
                     HStack{
                         Button(action: {
-                            callNMap()
+                            callKMap(startLocation: startLocation)
                         }) {
                             HStack{
                                 Text("경로 안내")
@@ -164,6 +164,17 @@ struct StationDetailView: View {
         let dname = selectedStation.stationName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: "nmap://route/car?dlat=\(selectedStation.latitude)&dlng=\(selectedStation.longitude)&dname=\(dname)&appname=EVFinder")!
         let appStoreURL = URL(string: "http://itunes.apple.com/app/id311867728?mt=8")!
+        
+        if UIApplication.shared.canOpenURL(url){
+            UIApplication.shared.open(url)
+        } else {
+            UIApplication.shared.open(appStoreURL)
+        }
+    }
+    
+    func callKMap(startLocation: Location){
+        let url = URL(string: "kakaomap://route?sp=\(startLocation.latitude),\(startLocation.longitude)&ep=\(selectedStation.latitude),\(selectedStation.longitude)&by=CAR")!
+        let appStoreURL = URL(string: "http://itunes.apple.com/app/id304608425")!
         
         if UIApplication.shared.canOpenURL(url){
             UIApplication.shared.open(url)

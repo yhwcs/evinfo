@@ -166,6 +166,7 @@
 				809DBB9B26F478B10002D1EF /* Frameworks */,
 				809DBB9C26F478B10002D1EF /* Resources */,
 				5EED00506595A97FA5249148 /* [CP] Copy Pods Resources */,
+				168F934E3F4D3ED78CBB0DA8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,7 +204,7 @@
 			);
 			mainGroup = 809DBB9526F478B10002D1EF;
 			packageReferences = (
-				809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet.git" */,
 			);
 			productRefGroup = 809DBB9F26F478B10002D1EF /* Products */;
 			projectDirPath = "";
@@ -228,6 +229,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		168F934E3F4D3ED78CBB0DA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-evinfo/Pods-evinfo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2B41D519A73885689F2D80FC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -491,7 +509,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+		809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
 			requirement = {
@@ -504,7 +522,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		809DBBE4270F2B750002D1EF /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			package = 809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet.git" */;
 			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
