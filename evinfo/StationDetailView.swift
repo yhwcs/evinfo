@@ -23,6 +23,9 @@ struct StationDetailView: View {
     // sheet showing flag for selecting a route guidance application
     @State private var showingSelectionSheet = false
     
+    // copy has been completed flag
+    @State private var showingCopyAlert = false
+    
     var body: some View {
         VStack {
             HStack{
@@ -47,8 +50,19 @@ struct StationDetailView: View {
                     }
                     HStack{
                         Text(selectedStation.address)
-                        .font(.callout)
+                            .font(.callout)
                             .foregroundColor(.gray)
+                        
+                        // copy the address to the clipboard
+                        Image(systemName: "doc.on.clipboard")
+                            .foregroundColor(.gray)
+                            .onTapGesture(){
+                                UIPasteboard.general.string = selectedStation.address
+                                self.showingCopyAlert = true
+                            }
+                            .alert(isPresented: $showingCopyAlert){
+                                Alert(title: Text("주소 복사 완료"), message: Text("주소 복사가 완료되었습니다.\n원하는 곳에 붙여넣기 해주세요."), dismissButton: .default(Text("닫기")))
+                            }
                         Spacer()
                     }
                     
@@ -79,6 +93,11 @@ struct StationDetailView: View {
                     HStack{
                         Image(systemName: "phone.fill")
                         Text(selectedStation.callNumber)
+                            .foregroundColor(.blue)
+                            // call the company
+                            .onTapGesture(){
+                                CallBusiness(callNumber: selectedStation.callNumber)
+                            }
                         Spacer()
                     }
                     HStack{
@@ -227,6 +246,17 @@ struct StationDetailView: View {
             } else {
                 UIApplication.shared.open(URL(string: appStoreURL)!)
             }
+        }
+    }
+    
+    // call the company
+    func CallBusiness(callNumber: String){
+        let callNum = callNumber.components(separatedBy: ["-"]).joined()
+        let url = URL(string: "tel://"+callNum)!
+        if UIApplication.shared.canOpenURL(url){
+            UIApplication.shared.open(url)
+        } else {
+            return
         }
     }
  
