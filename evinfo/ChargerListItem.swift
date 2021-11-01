@@ -17,6 +17,8 @@ struct ChargerListItem: Identifiable, Codable {
     var chargerStat: String
     var output: Int
     var price: Float
+    var lastChargeDateTime: String
+    var startChargeDateTime: String
     
     // Encode/Decode is performed except for id that allows item to be identification
     enum CodingKeys: String, CodingKey {
@@ -28,5 +30,7 @@ struct ChargerListItem: Identifiable, Codable {
         case chargerStat
         case output
         case price
+        case lastChargeDateTime
+        case startChargeDateTime
     }
 }
