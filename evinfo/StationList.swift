@@ -21,7 +21,7 @@ class StationList: ObservableObject  {
     
     // Method
     func getStationInfo(latitude: Double, longitude: Double, size: Int) {
-        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/stations?latitude=\(latitude)&longitude=\(longitude)&size=\(size)") else { return }
+        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/stations?latitude=\(latitude)&longitude=\(longitude)&size=\(size)&chargerTypes=1,2,3") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
         // subscribe publisher을 background thread로 옮김
