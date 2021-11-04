@@ -10,18 +10,18 @@ import Combine
 
 class StationList: ObservableObject  {
     init() {
-        getStationInfo(latitude:37.55108, longitude:126.94096, size:10)
+        getStationInfo(latitude:37.55108, longitude:126.94096, size:10, isDCCombo: true, isDCDemo: true, isAC3: true, isACSlow: true)
     }
-    init(latitude: Double, longitude: Double, size: Int){
-        getStationInfo(latitude:latitude, longitude:longitude, size:size)
+    init(latitude: Double, longitude: Double, size: Int, isDCCombo: Bool, isDCDemo: Bool, isAC3: Bool, isACSlow: Bool){
+        getStationInfo(latitude:latitude, longitude:longitude, size:size, isDCCombo: isDCCombo, isDCDemo: isDCDemo, isAC3: isAC3, isACSlow: isACSlow)
     }
     
     @Published var items: [StationListItem] = []
     var canclelables = Set<AnyCancellable>()
     
     // Method
-    func getStationInfo(latitude: Double, longitude: Double, size: Int) {
-        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/stations?latitude=\(latitude)&longitude=\(longitude)&size=\(size)&chargerTypes=1,2,3") else { return }
+    func getStationInfo(latitude: Double, longitude: Double, size: Int, isDCCombo: Bool, isDCDemo: Bool, isAC3: Bool, isACSlow: Bool) {
+        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/stations?latitude=\(latitude)&longitude=\(longitude)&size=\(size)&isDCCombo=\(isDCDemo)&isDCDemo=\(isDCDemo)&isAC3=\(isAC3)&isACSlow=\(isACSlow)") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
         // subscribe publisher을 background thread로 옮김
@@ -52,6 +52,7 @@ class StationList: ObservableObject  {
             }
         return output.data
     }
+    
     func clearStationList() {
         for _ in 0..<items.count {
             items.remove(at: 0)

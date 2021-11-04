@@ -22,7 +22,6 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
     var enableChargers: Int
     var isLimit: Bool
     var isParkingFree: Bool
-    var chargerTypes = [1]
     var chargers: [ChargerListItem] = []
     
     // Encode/Decode is performed except for id that allows item to be identification
@@ -40,7 +39,6 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
         case enableChargers
         case isLimit
         case isParkingFree
-        case chargerTypes
         case chargers
     }
     
@@ -57,7 +55,6 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
         self.distance = 0.0
         self.isLimit = false
         self.isParkingFree = false
-        self.chargerTypes = []
         self.enableChargers = 0
     }
     
@@ -72,6 +69,8 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
         toItem.callNumber = fromItem.callNumber
         toItem.businessName = fromItem.businessName
         toItem.distance = fromItem.distance
+        toItem.isLimit = fromItem.isLimit
+        toItem.isParkingFree = fromItem.isParkingFree
         toItem.enableChargers = fromItem.enableChargers
         
         for _ in 0..<toItem.chargers.count {
