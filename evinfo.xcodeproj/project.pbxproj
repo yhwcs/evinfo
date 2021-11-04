@@ -32,6 +32,9 @@
 		80B844F9272D350D00AA07C8 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80B844F6272D350400AA07C8 /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		80CE0E4527335B6800D176CB /* FilteringChargerTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */; };
 		80CE0E472733C30800D176CB /* CustomChargerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E462733C30800D176CB /* CustomChargerType.swift */; };
+		80CE0E4A273406EC00D176CB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 80CE0E49273406EC00D176CB /* Lottie */; };
+		80CE0E4C2734070500D176CB /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E4B2734070500D176CB /* LottieView.swift */; };
+		80CE0E4E2734096E00D176CB /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0E4D2734096E00D176CB /* Loading.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +80,8 @@
 		80B844F6272D350400AA07C8 /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
 		80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringChargerTypeView.swift; sourceTree = "<group>"; };
 		80CE0E462733C30800D176CB /* CustomChargerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChargerType.swift; sourceTree = "<group>"; };
+		80CE0E4B2734070500D176CB /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		80CE0E4D2734096E00D176CB /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Loading.json; path = ../../../Downloads/Loading.json; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +94,7 @@
 				809DBBE5270F2B750002D1EF /* PartialSheet in Frameworks */,
 				034460B20287EBF6D9848AC2 /* Pods_evinfo.framework in Frameworks */,
 				80B844F8272D350D00AA07C8 /* TMapSDK.framework in Frameworks */,
+				80CE0E4A273406EC00D176CB /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +132,7 @@
 				809DBBE1270F07E50002D1EF /* StationSimpleView.swift */,
 				809DBBE6271846350002D1EF /* StationDetailView.swift */,
 				80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */,
+				80CE0E4B2734070500D176CB /* LottieView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
 				80CE0E462733C30800D176CB /* CustomChargerType.swift */,
@@ -134,6 +141,7 @@
 				809DBBD726FF78030002D1EF /* StationListItem.swift */,
 				809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */,
 				809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */,
+				80CE0E4D2734096E00D176CB /* Loading.json */,
 				809DBBAA26F478B20002D1EF /* Assets.xcassets */,
 				809DBBAF26F478B20002D1EF /* LaunchScreen.storyboard */,
 				809DBBB226F478B20002D1EF /* Info.plist */,
@@ -201,6 +209,7 @@
 			name = evinfo;
 			packageProductDependencies = (
 				809DBBE4270F2B750002D1EF /* PartialSheet */,
+				80CE0E49273406EC00D176CB /* Lottie */,
 			);
 			productName = evinfo;
 			productReference = 809DBB9E26F478B10002D1EF /* evinfo.app */;
@@ -231,6 +240,7 @@
 			mainGroup = 809DBB9526F478B10002D1EF;
 			packageReferences = (
 				809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				80CE0E48273406EC00D176CB /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 809DBB9F26F478B10002D1EF /* Products */;
 			projectDirPath = "";
@@ -248,6 +258,7 @@
 			files = (
 				809DBBB126F478B20002D1EF /* LaunchScreen.storyboard in Resources */,
 				809DBBAE26F478B20002D1EF /* Preview Assets.xcassets in Resources */,
+				80CE0E4E2734096E00D176CB /* Loading.json in Resources */,
 				809DBBAB26F478B20002D1EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */,
+				80CE0E4C2734070500D176CB /* LottieView.swift in Sources */,
 				809DBBA226F478B10002D1EF /* AppDelegate.swift in Sources */,
 				809DBBE7271846350002D1EF /* StationDetailView.swift in Sources */,
 				809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */,
@@ -555,6 +567,14 @@
 				minimumVersion = 2.1.14;
 			};
 		};
+		80CE0E48273406EC00D176CB /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -562,6 +582,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 809DBBE3270F2B750002D1EF /* XCRemoteSwiftPackageReference "PartialSheet" */;
 			productName = PartialSheet;
+		};
+		80CE0E49273406EC00D176CB /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80CE0E48273406EC00D176CB /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -31,7 +31,7 @@ struct MapView: View {
     @State private var showingStationListSheet = false
     // station simple view flag
     @State private var showingStationSimpleSheet = false
-    
+    // filtering charger type view flag
     @State private var showingFilteringChargerSheet = false
 
     @EnvironmentObject var stationList: StationList
@@ -42,8 +42,12 @@ struct MapView: View {
     // partial sheet (Station List / Simple View) manager
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     
-
+    // charger type chosen by the user
     @StateObject var customChargerTypes = CustomChargerTypes()
+    
+    // time to show the loading view
+    @State var timeRemaining = 5
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack{
@@ -139,6 +143,17 @@ struct MapView: View {
                             .environmentObject(customChargerTypes)
                     }
                     
+                    // loading to communicate with the server
+                    if self.timeRemaining > 0 {
+                        LottieView(filename: "Loading")
+                            .frame(width: 200, height: 200)
+                            .onReceive(timer) {_ in
+                                if self.timeRemaining > 0 {
+                                    self.timeRemaining -= 1
+                                }
+                            }
+                    }
+                    
                     Spacer()
                     HStack(spacing: 10){
                         // showing station list view button
@@ -211,6 +226,7 @@ struct MapView: View {
     func refreshStationList(){
         stationList.clearStationList()
         stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40, isDCCombo: customChargerTypes.isDCCombo, isDCDemo: customChargerTypes.isDCDemo, isAC3: customChargerTypes.isAC3, isACSlow: customChargerTypes.isACSlow)
+        self.timeRemaining = 5
     }
 }
 
