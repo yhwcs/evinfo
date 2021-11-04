@@ -30,6 +30,8 @@
 		809DBBE7271846350002D1EF /* StationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809DBBE6271846350002D1EF /* StationDetailView.swift */; };
 		80B844F8272D350D00AA07C8 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B844F6272D350400AA07C8 /* TMapSDK.framework */; };
 		80B844F9272D350D00AA07C8 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80B844F6272D350400AA07C8 /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		80CE0E4527335B6800D176CB /* FilteringChargerTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */; };
+		80CE0E472733C30800D176CB /* CustomChargerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E462733C30800D176CB /* CustomChargerType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +75,8 @@
 		809DBBE1270F07E50002D1EF /* StationSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSimpleView.swift; sourceTree = "<group>"; };
 		809DBBE6271846350002D1EF /* StationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailView.swift; sourceTree = "<group>"; };
 		80B844F6272D350400AA07C8 /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
+		80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringChargerTypeView.swift; sourceTree = "<group>"; };
+		80CE0E462733C30800D176CB /* CustomChargerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChargerType.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,8 +125,10 @@
 				809DBBDB27004DFF0002D1EF /* StationRowView.swift */,
 				809DBBE1270F07E50002D1EF /* StationSimpleView.swift */,
 				809DBBE6271846350002D1EF /* StationDetailView.swift */,
+				80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
+				80CE0E462733C30800D176CB /* CustomChargerType.swift */,
 				809DBBC026F9FB660002D1EF /* ChargerListItem.swift */,
 				809DBBD9270038870002D1EF /* StationList.swift */,
 				809DBBD726FF78030002D1EF /* StationListItem.swift */,
@@ -319,10 +325,12 @@
 				809DBBE0270EFE5A0002D1EF /* StationAnnotationProtocol.swift in Sources */,
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,
 				809DBBB926F47BC60002D1EF /* MapView.swift in Sources */,
+				80CE0E4527335B6800D176CB /* FilteringChargerTypeView.swift in Sources */,
 				809DBBDC27004DFF0002D1EF /* StationRowView.swift in Sources */,
 				809DBBA926F478B10002D1EF /* evinfo.xcdatamodeld in Sources */,
 				809DBBE2270F07E50002D1EF /* StationSimpleView.swift in Sources */,
 				809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */,
+				80CE0E472733C30800D176CB /* CustomChargerType.swift in Sources */,
 				809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */,
 				809DBBD826FF78030002D1EF /* StationListItem.swift in Sources */,
 				809DBBA626F478B10002D1EF /* ContentView.swift in Sources */,

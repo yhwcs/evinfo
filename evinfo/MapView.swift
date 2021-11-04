@@ -31,6 +31,8 @@ struct MapView: View {
     @State private var showingStationListSheet = false
     // station simple view flag
     @State private var showingStationSimpleSheet = false
+    
+    @State private var showingFilteringChargerSheet = false
 
     @EnvironmentObject var stationList: StationList
     
@@ -39,6 +41,9 @@ struct MapView: View {
     
     // partial sheet (Station List / Simple View) manager
     @EnvironmentObject var partialSheetManager: PartialSheetManager
+    
+
+    @StateObject var customChargerTypes = CustomChargerTypes()
     
     var body: some View {
         ZStack{
@@ -90,15 +95,50 @@ struct MapView: View {
             }
             .addPartialSheet()
             .onAppear(){
-                curLocation = LocationHelper.currentLocation
-                region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
+                refreshCurLocation()
                 print(curLocation)
-                stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
-                startLocation.setLocation(lat: curLocation.latitude, long: curLocation.longitude)
+                refreshStationList()
             }
             
             if showingStationSimpleSheet == false && showingStationListSheet == false {
                 VStack(spacing: 10){
+                    // charger type filtering
+                    HStack{
+                        Button(action: {
+                            if self.showingFilteringChargerSheet {
+                                refreshStationList()
+                            }
+                            self.showingFilteringChargerSheet.toggle()
+                        }) {
+                            if self.showingFilteringChargerSheet == false {
+                                HStack{
+                                    Image(systemName: "bolt.fill")
+                                    Text("충전 타입 ▼")
+                                }
+                                .padding(10)
+                                .foregroundColor(.black)
+                                .background(Color.white)
+                                .cornerRadius(30)
+                                .padding(10)
+                            }
+                            else {
+                                HStack{
+                                    Image(systemName: "bolt.fill")
+                                    Text("충전 타입 ▲")
+                                }
+                                .padding(10)
+                                .foregroundColor(.white)
+                                .background(Color.green)
+                                .cornerRadius(30)
+                                .padding(10)
+                            }
+                        }
+                    }
+                    if self.showingFilteringChargerSheet {
+                        FilteringChargerTypeView()
+                            .environmentObject(customChargerTypes)
+                    }
+                    
                     Spacer()
                     HStack(spacing: 10){
                         // showing station list view button
@@ -122,11 +162,8 @@ struct MapView: View {
                         
                         // refresh button
                         Button(action: {
-                            curLocation = LocationHelper.currentLocation
-                            region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
-                            stationList.clearStationList()
-                            stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40)
-                            startLocation.setLocation(lat: curLocation.latitude, long: curLocation.longitude)
+                            refreshCurLocation()
+                            refreshStationList()
                             print("refresh")
                         }) {
                             Image(systemName: "arrow.clockwise")
@@ -164,6 +201,17 @@ struct MapView: View {
             }
         }
     } // End of body
+    
+    func refreshCurLocation(){
+        curLocation = LocationHelper.currentLocation
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
+        startLocation.setLocation(lat: curLocation.latitude, long: curLocation.longitude)
+    }
+    
+    func refreshStationList(){
+        stationList.clearStationList()
+        stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40, isDCCombo: customChargerTypes.isDCCombo, isDCDemo: customChargerTypes.isDCDemo, isAC3: customChargerTypes.isAC3, isACSlow: customChargerTypes.isACSlow)
+    }
 }
 
 struct MapView_Previews: PreviewProvider {
