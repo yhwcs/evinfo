@@ -51,9 +51,17 @@ struct MapView: View {
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(trackingMode), annotationItems: stationList.items) {
+            Map(coordinateRegion: $region,
+                interactionModes: .all,
+                showsUserLocation: true,
+                userTrackingMode: .constant(trackingMode),
+                annotationItems: stationList.items) {
                 items in
-                StationAnnotationProtocol(MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: items.latitude, longitude: items.longitude)) {
+                StationAnnotationProtocol(
+                    MapAnnotation(
+                        coordinate: CLLocationCoordinate2D(
+                            latitude: items.latitude,
+                            longitude: items.longitude)) {
                     // Station that can charge
                     if items.enableChargers > 0 {
                     Image(systemName: "mappin.circle")
@@ -162,11 +170,7 @@ struct MapView: View {
                         }) {
                             Image(systemName: "list.bullet")
                         }
-                        .font(.system(size:25))
-                        .foregroundColor(.blue)
-                        .frame(width: 40, height: 40)
-                        .background(Color.white)
-                        .cornerRadius(10)
+                        .buttonStyle(NormalButtonStyle())
                         .partialSheet(isPresented: $showingStationListSheet){
                             StationListView()
                                 .environmentObject(stationList)
@@ -183,11 +187,7 @@ struct MapView: View {
                         }) {
                             Image(systemName: "arrow.clockwise")
                         }
-                        .font(.system(size:25))
-                        .foregroundColor(.blue)
-                        .frame(width: 40, height: 40)
-                        .background(Color.white)
-                        .cornerRadius(10)
+                        .buttonStyle(NormalButtonStyle())
 
                         // user tracking mode button
                         Button(action: {
@@ -205,11 +205,7 @@ struct MapView: View {
                                 Image(systemName: "location")
                             }
                         }
-                        .font(.system(size:25))
-                        .foregroundColor(.blue)
-                        .frame(width: 40, height: 40)
-                        .background(Color.white)
-                        .cornerRadius(10)
+                        .buttonStyle(NormalButtonStyle())
                     }
                 }
                 .padding()
@@ -227,6 +223,17 @@ struct MapView: View {
         stationList.clearStationList()
         stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40, isDCCombo: customChargerTypes.isDCCombo, isDCDemo: customChargerTypes.isDCDemo, isAC3: customChargerTypes.isAC3, isACSlow: customChargerTypes.isACSlow)
         self.timeRemaining = 5
+    }
+    
+    struct NormalButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .font(.system(size:25))
+                .foregroundColor(.blue)
+                .frame(width: 40, height: 40)
+                .background(Color.white)
+                .cornerRadius(10)
+        }
     }
 }
 
