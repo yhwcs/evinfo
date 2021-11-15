@@ -11,7 +11,13 @@ import PartialSheet
 
 struct MapView: View {
     // initialize region
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: MapDefault.latitude, longitude: MapDefault.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(
+            latitude: MapDefault.latitude,
+            longitude: MapDefault.longitude),
+        span: MKCoordinateSpan(
+            latitudeDelta: MapDefault.zoom,
+            longitudeDelta: MapDefault.zoom))
     
     // default region
     private enum MapDefault {
@@ -69,7 +75,9 @@ struct MapView: View {
                         .frame(width: 30, height: 30)
                         .foregroundColor(.green)
                         .onTapGesture {
-                            selectedStation.copyStation(toItem: selectedStation, fromItem: items)
+                            selectedStation.copyStation(
+                                toItem: selectedStation,
+                                fromItem: items)
                             showingStationSimpleSheet = true
                             print(items.stationName)
                         }
@@ -81,7 +89,9 @@ struct MapView: View {
                             .frame(width: 30, height: 30)
                             .foregroundColor(.red)
                             .onTapGesture {
-                                selectedStation.copyStation(toItem: selectedStation, fromItem: items)
+                                selectedStation.copyStation(
+                                    toItem: selectedStation,
+                                    fromItem: items)
                                 showingStationSimpleSheet = true
                                 print(items.stationName)
                             }
@@ -93,7 +103,9 @@ struct MapView: View {
                             .frame(width: 30, height: 30)
                             .foregroundColor(.orange)
                             .onTapGesture {
-                                selectedStation.copyStation(toItem: selectedStation, fromItem: items)
+                                selectedStation.copyStation(
+                                    toItem: selectedStation,
+                                    fromItem: items)
                                 showingStationSimpleSheet = true
                                 print(items.stationName)
                             }
@@ -130,8 +142,6 @@ struct MapView: View {
                                 .padding(10)
                                 .foregroundColor(.black)
                                 .background(Color.white)
-                                .cornerRadius(30)
-                                .padding(10)
                             }
                             else {
                                 HStack{
@@ -141,10 +151,9 @@ struct MapView: View {
                                 .padding(10)
                                 .foregroundColor(.white)
                                 .background(Color.green)
-                                .cornerRadius(30)
-                                .padding(10)
                             }
                         }
+                        .buttonStyle(RoundedRectangleButtonStyle())
                     }
                     if self.showingFilteringChargerSheet {
                         FilteringChargerTypeView()
@@ -215,13 +224,28 @@ struct MapView: View {
     
     func refreshCurLocation(){
         curLocation = LocationHelper.currentLocation
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: curLocation.latitude, longitude: curLocation.longitude), span: MKCoordinateSpan(latitudeDelta: MapDefault.zoom, longitudeDelta: MapDefault.zoom))
-        startLocation.setLocation(lat: curLocation.latitude, long: curLocation.longitude)
+        region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: curLocation.latitude,
+                longitude: curLocation.longitude),
+            span: MKCoordinateSpan(
+                latitudeDelta: MapDefault.zoom,
+                longitudeDelta: MapDefault.zoom))
+        startLocation.setLocation(
+            lat: curLocation.latitude,
+            long: curLocation.longitude)
     }
     
     func refreshStationList(){
         stationList.clearStationList()
-        stationList.getStationInfo(latitude: curLocation.latitude, longitude: curLocation.longitude, size: 40, isDCCombo: customChargerTypes.isDCCombo, isDCDemo: customChargerTypes.isDCDemo, isAC3: customChargerTypes.isAC3, isACSlow: customChargerTypes.isACSlow)
+        stationList.getStationInfo(
+            latitude: curLocation.latitude,
+            longitude: curLocation.longitude,
+            size: 40,
+            isDCCombo: customChargerTypes.isDCCombo,
+            isDCDemo: customChargerTypes.isDCDemo,
+            isAC3: customChargerTypes.isAC3,
+            isACSlow: customChargerTypes.isACSlow)
         self.timeRemaining = 5
     }
     
@@ -233,6 +257,14 @@ struct MapView: View {
                 .frame(width: 40, height: 40)
                 .background(Color.white)
                 .cornerRadius(10)
+        }
+    }
+    
+    struct RoundedRectangleButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .cornerRadius(30)
+                .padding(10)
         }
     }
 }
