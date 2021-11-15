@@ -61,7 +61,9 @@ struct StationDetailView: View {
                                 self.showingCopyAlert = true
                             }
                             .alert(isPresented: $showingCopyAlert){
-                                Alert(title: Text("주소 복사 완료"), message: Text("주소 복사가 완료되었습니다.\n원하는 곳에 붙여넣기 해주세요."), dismissButton: .default(Text("닫기")))
+                                Alert(title: Text("주소 복사 완료"),
+                                      message: Text("주소 복사가 완료되었습니다.\n원하는 곳에 붙여넣기 해주세요."),
+                                      dismissButton: .default(Text("닫기")))
                             }
                         Spacer()
                     }
@@ -86,7 +88,17 @@ struct StationDetailView: View {
                         }
                         // sheet for selecting a route guidance application
                         .actionSheet(isPresented: $showingSelectionSheet, content: {
-                            ActionSheet(title: Text("경로 안내 어플리케이션").font(.headline), message: Text("해당 충전소로 안내할 어플리케이션을 선택해주세요."), buttons: [.default(Text("네이버 맵 (Naver Map)"), action: callNMap), .default(Text("카카오 맵 (Kakao Map)"), action: callKMap), .default(Text("티 맵 (T Map)"), action: callTMap), .cancel(Text("취소"))])
+                            ActionSheet(
+                                title: Text("경로 안내 어플리케이션").font(.headline),
+                                message: Text("해당 충전소로 안내할 어플리케이션을 선택해주세요."),
+                                buttons: [
+                                    .default(Text("네이버 맵 (Naver Map)"),
+                                             action: callNMap),
+                                        .default(Text("카카오 맵 (Kakao Map)"),
+                                                 action: callKMap),
+                                        .default(Text("티 맵 (T Map)"),
+                                                 action: callTMap),
+                                        .cancel(Text("취소"))])
                         })
                     }
                     
@@ -152,43 +164,35 @@ struct StationDetailView: View {
                             }
                             if selectedStation.chargers[i].isDCCombo {
                                 Text("DC콤보")
-                                    .font(.headline)
-                                    .foregroundColor(.blue)
+                                    .availalbeTextModifier()
                             }
                             else {
                                 Text("DC콤보")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
+                                    .unavailalbeTextModifier()
                             }
                             if selectedStation.chargers[i].isDCDemo {
                                 Text("DC데모")
-                                    .font(.headline)
-                                    .foregroundColor(.blue)
+                                    .availalbeTextModifier()
                             }
                             else {
                                 Text("DC데모")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
+                                    .unavailalbeTextModifier()
                             }
                             if selectedStation.chargers[i].isAC3 {
                                 Text("AC3상")
-                                    .font(.headline)
-                                    .foregroundColor(.blue)
+                                    .availalbeTextModifier()
                             }
                             else {
                                 Text("AC3상")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
+                                    .unavailalbeTextModifier()
                             }
                             if selectedStation.chargers[i].isACSlow {
                                 Text("완속")
-                                    .font(.headline)
-                                    .foregroundColor(.blue)
+                                    .availalbeTextModifier()
                             }
                             else {
                                 Text("완속")
-                                    .font(.headline)
-                                    .foregroundColor(.gray)
+                                    .unavailalbeTextModifier()
                             }
                         }
                     } // End of ForEach
@@ -259,7 +263,34 @@ struct StationDetailView: View {
             return
         }
     }
- 
+}
+
+struct AvailableTextModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.headline)
+            .foregroundColor(.blue)
+    }
+}
+
+struct UnavailableTextModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.body)
+            .foregroundColor(.gray)
+    }
+}
+
+extension View {
+    func availalbeTextModifier() -> some View {
+        modifier(AvailableTextModifier())
+    }
+}
+
+extension View {
+    func unavailalbeTextModifier() -> some View {
+        modifier(UnavailableTextModifier())
+    }
 }
 
 struct StationDetailView_Previews: PreviewProvider {

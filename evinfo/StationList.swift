@@ -10,10 +10,22 @@ import Combine
 
 class StationList: ObservableObject  {
     init() {
-        getStationInfo(latitude:37.55108, longitude:126.94096, size:10, isDCCombo: true, isDCDemo: true, isAC3: true, isACSlow: true)
+        getStationInfo(latitude:37.55108,
+                       longitude:126.94096,
+                       size:10,
+                       isDCCombo: true,
+                       isDCDemo: true,
+                       isAC3: true,
+                       isACSlow: true)
     }
     init(latitude: Double, longitude: Double, size: Int, isDCCombo: Bool, isDCDemo: Bool, isAC3: Bool, isACSlow: Bool){
-        getStationInfo(latitude:latitude, longitude:longitude, size:size, isDCCombo: isDCCombo, isDCDemo: isDCDemo, isAC3: isAC3, isACSlow: isACSlow)
+        getStationInfo(latitude:latitude,
+                       longitude:longitude,
+                       size:size,
+                       isDCCombo: isDCCombo,
+                       isDCDemo: isDCDemo,
+                       isAC3: isAC3,
+                       isACSlow: isACSlow)
     }
     
     @Published var items: [StationListItem] = []
