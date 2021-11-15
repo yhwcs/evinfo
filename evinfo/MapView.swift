@@ -160,6 +160,7 @@ struct MapView: View {
                             .environmentObject(customChargerTypes)
                     }
                     
+                    Spacer()
                     // loading to communicate with the server
                     if self.timeRemaining > 0 {
                         LottieView(filename: "Loading")
