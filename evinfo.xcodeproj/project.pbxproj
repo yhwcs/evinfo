@@ -35,6 +35,7 @@
 		80CE0E4A273406EC00D176CB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 80CE0E49273406EC00D176CB /* Lottie */; };
 		80CE0E4C2734070500D176CB /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E4B2734070500D176CB /* LottieView.swift */; };
 		80CE0E4E2734096E00D176CB /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0E4D2734096E00D176CB /* Loading.json */; };
+		80CE0E522747DB9F00D176CB /* LaunchScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0E512747DB9F00D176CB /* LaunchScreenImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +83,7 @@
 		80CE0E462733C30800D176CB /* CustomChargerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChargerType.swift; sourceTree = "<group>"; };
 		80CE0E4B2734070500D176CB /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		80CE0E4D2734096E00D176CB /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Loading.json; path = ../../../Downloads/Loading.json; sourceTree = "<group>"; };
+		80CE0E512747DB9F00D176CB /* LaunchScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreenImage.png; path = ../../LaunchScreenImage.png; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 				809DBBD726FF78030002D1EF /* StationListItem.swift */,
 				809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */,
 				809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */,
+				80CE0E512747DB9F00D176CB /* LaunchScreenImage.png */,
 				80CE0E4D2734096E00D176CB /* Loading.json */,
 				809DBBAA26F478B20002D1EF /* Assets.xcassets */,
 				809DBBAF26F478B20002D1EF /* LaunchScreen.storyboard */,
@@ -256,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CE0E522747DB9F00D176CB /* LaunchScreenImage.png in Resources */,
 				809DBBB126F478B20002D1EF /* LaunchScreen.storyboard in Resources */,
 				809DBBAE26F478B20002D1EF /* Preview Assets.xcassets in Resources */,
 				80CE0E4E2734096E00D176CB /* Loading.json in Resources */,
