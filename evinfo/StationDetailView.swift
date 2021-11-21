@@ -30,228 +30,214 @@ struct StationDetailView: View {
     @State private var showingChargeTime = false
     
     var body: some View {
-        VStack {
-            HStack{
-                // dismiss view button
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.title)
+        ScrollView{
+            VStack(spacing: 10){
+                HStack{
+                    Text(selectedStation.stationName)
+                        .font(.title3)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        .padding(10)
+                    Spacer()
                 }
-                Spacer()
-            }
-            ScrollView{
-                VStack(spacing: 10){
-                    HStack{
-                        Text(selectedStation.stationName)
-                            .font(.title3)
-                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        Spacer()
+                HStack{
+                    Text(selectedStation.address)
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                    
+                    // copy the address to the clipboard
+                    Image(systemName: "doc.on.clipboard")
+                        .foregroundColor(.gray)
+                        .onTapGesture(){
+                            UIPasteboard.general.string = selectedStation.address
+                            self.showingCopyAlert = true
+                        }
+                        .alert(isPresented: $showingCopyAlert){
+                            Alert(title: Text("주소 복사 완료"),
+                                  message: Text("주소 복사가 완료되었습니다.\n원하는 곳에 붙여넣기 해주세요."),
+                                  dismissButton: .default(Text("닫기")))
+                        }
+                    Spacer()
+                }
+                
+                // route guidance button
+                HStack{
+                    Button(action: {
+                        self.showingSelectionSheet.toggle()
+                    }) {
+                        HStack{
+                            HStack{
+                                Image(systemName: "car.fill")
+                                Text("경로 안내")
+                            }
+                            .padding(10)
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(30)
+                            .padding(.trailing, 10)
+                            Spacer()
+                        }
                     }
+                    // sheet for selecting a route guidance application
+                    .actionSheet(isPresented: $showingSelectionSheet, content: {
+                        ActionSheet(
+                            title: Text("경로 안내 어플리케이션").font(.headline),
+                            message: Text("해당 충전소로 안내할 어플리케이션을 선택해주세요."),
+                            buttons: [
+                                .default(Text("네이버 맵 (Naver Map)"),
+                                         action: callNMap),
+                                    .default(Text("카카오 맵 (Kakao Map)"),
+                                             action: callKMap),
+                                    .default(Text("티 맵 (T Map)"),
+                                             action: callTMap),
+                                    .cancel(Text("취소"))])
+                    })
+                }
+                
+                HStack{
+                    Image(systemName: "phone.fill")
+                    Text(selectedStation.callNumber)
+                        .foregroundColor(.blue)
+                        // call the company
+                        .onTapGesture(){
+                            CallBusiness(callNumber: selectedStation.callNumber)
+                        }
+                    Spacer()
+                }
+                Group{
                     HStack{
-                        Text(selectedStation.address)
+                        Image(systemName: "building.2")
+                        Text(selectedStation.businessName)
                             .font(.callout)
-                            .foregroundColor(.gray)
-                        
-                        // copy the address to the clipboard
-                        Image(systemName: "doc.on.clipboard")
-                            .foregroundColor(.gray)
-                            .onTapGesture(){
-                                UIPasteboard.general.string = selectedStation.address
-                                self.showingCopyAlert = true
-                            }
-                            .alert(isPresented: $showingCopyAlert){
-                                Alert(title: Text("주소 복사 완료"),
-                                      message: Text("주소 복사가 완료되었습니다.\n원하는 곳에 붙여넣기 해주세요."),
-                                      dismissButton: .default(Text("닫기")))
-                            }
-                        Spacer()
-                    }
-                    
-                    // route guidance button
-                    HStack{
-                        Button(action: {
-                            self.showingSelectionSheet.toggle()
-                        }) {
-                            HStack{
-                                HStack{
-                                    Image(systemName: "car.fill")
-                                    Text("경로 안내")
-                                }
-                                .padding(10)
-                                .foregroundColor(.white)
-                                .background(Color.blue)
-                                .cornerRadius(30)
-                                .padding(.trailing, 10)
-                                Spacer()
-                            }
-                        }
-                        // sheet for selecting a route guidance application
-                        .actionSheet(isPresented: $showingSelectionSheet, content: {
-                            ActionSheet(
-                                title: Text("경로 안내 어플리케이션").font(.headline),
-                                message: Text("해당 충전소로 안내할 어플리케이션을 선택해주세요."),
-                                buttons: [
-                                    .default(Text("네이버 맵 (Naver Map)"),
-                                             action: callNMap),
-                                        .default(Text("카카오 맵 (Kakao Map)"),
-                                                 action: callKMap),
-                                        .default(Text("티 맵 (T Map)"),
-                                                 action: callTMap),
-                                        .cancel(Text("취소"))])
-                        })
-                    }
-                    
-                    HStack{
-                        Image(systemName: "phone.fill")
-                        Text(selectedStation.callNumber)
-                            .foregroundColor(.blue)
-                            // call the company
-                            .onTapGesture(){
-                                CallBusiness(callNumber: selectedStation.callNumber)
-                            }
-                        Spacer()
-                    }
-                    Group{
-                        HStack{
-                            Image(systemName: "building.2")
-                            Text(selectedStation.businessName)
-                                .font(.callout)
-                                Spacer()
-                        }
-                        HStack{
-                            Image(systemName: "wonsign.circle")
-                            Text("1kWh당 "+String(format: "%.1f", selectedStation.chargers[0].price)+"원")
-                                .font(.callout)
-                                Spacer()
-                        }
-                        if selectedStation.useTime.count > 0 {
-                            HStack{
-                                Image(systemName: "clock")
-                                Text(selectedStation.useTime)
-                                .font(.callout)
-                                Spacer()
-                            }
-                        }
-                        HStack{
-                            if selectedStation.isLimit {
-                                Image(systemName: "person.fill.xmark")
-                                Text("외부인 사용불가")
-                                    .font(.callout)
-                            }
-                            else{
-                                Image(systemName: "person.fill.checkmark")
-                                Text("외부인 사용가능")
-                                    .font(.callout)
-                            }
                             Spacer()
-                        }
+                    }
+                    HStack{
+                        Image(systemName: "wonsign.circle")
+                        Text("1kWh당 "+String(format: "%.1f", selectedStation.chargers[0].price)+"원")
+                            .font(.callout)
+                            Spacer()
+                    }
+                    if selectedStation.useTime.count > 0 {
                         HStack{
-                            Image(systemName: "p.circle")
-                            if selectedStation.isParkingFree {
-                                Text("무료 주차")
-                                    .font(.callout)
-                            }
-                            else{
-                                Text("유료 주차")
-                                    .font(.callout)
-                            }
+                            Image(systemName: "clock")
+                            Text(selectedStation.useTime)
+                            .font(.callout)
                             Spacer()
                         }
                     }
-                    Text("")
                     HStack{
-                        Text("충전기 현황")
-                            .font(.headline)
-                        Spacer()
-                        Text(showingChargeTime ? "-" : "+")
-                            .font(.headline)
-                            .foregroundColor(.blue)
-                            .onTapGesture {
-                                showingChargeTime.toggle()
-                            }
-                    }
-                    
-                    // charger list
-                    ForEach(0..<selectedStation.chargers.count){
-                        i in
-                        VStack{
-                            HStack{
-                                if selectedStation.chargers[i].chargerStat == "WAITING" {
-                                    Text("충전 가능")
-                                        .font(.headline)
-                                        .foregroundColor(.green)
-                                }
-                                else if selectedStation.chargers[i].chargerStat == "CHARGING" {
-                                    Text("충전 불가")
-                                        .font(.headline)
-                                        .foregroundColor(.red)
-                                }
-                                else if selectedStation.chargers[i].chargerStat == "STOPPED" {
-                                    Text("운영 중지")
-                                        .font(.headline)
-                                        .foregroundColor(.orange)
-                                }
-                                else if selectedStation.chargers[i].chargerStat == "CHECKING" {
-                                    Text("점검 진행")
-                                        .font(.headline)
-                                        .foregroundColor(.orange)
-                                }
-                                else {
-                                    Text("확인 불가")
-                                        .font(.headline)
-                                        .foregroundColor(.orange)
-                                }
-                                if selectedStation.chargers[i].isDCCombo {
-                                    Text("DC콤보")
-                                        .availalbeTextModifier()
-                                }
-                                else {
-                                    Text("DC콤보")
-                                        .unavailalbeTextModifier()
-                                }
-                                if selectedStation.chargers[i].isDCDemo {
-                                    Text("DC데모")
-                                        .availalbeTextModifier()
-                                }
-                                else {
-                                    Text("DC데모")
-                                        .unavailalbeTextModifier()
-                                }
-                                if selectedStation.chargers[i].isAC3 {
-                                    Text("AC3상")
-                                        .availalbeTextModifier()
-                                }
-                                else {
-                                    Text("AC3상")
-                                        .unavailalbeTextModifier()
-                                }
-                                if selectedStation.chargers[i].isACSlow {
-                                    Text("완속")
-                                        .availalbeTextModifier()
-                                }
-                                else {
-                                    Text("완속")
-                                        .unavailalbeTextModifier()
-                                }
-                                
-                            }
-                            if showingChargeTime {
-                                let chargeTime = ChargeTimeToString(chargerStat: selectedStation.chargers[i].chargerStat,
-                                                                    lastChargeDateTime: selectedStation.chargers[i].lastChargeDateTime,
-                                                                    startChargeDateTime: selectedStation.chargers[i].startChargeDateTime)
-                                Text(chargeTime)
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                            }
+                        if selectedStation.isLimit {
+                            Image(systemName: "person.fill.xmark")
+                            Text("외부인 사용불가")
+                                .font(.callout)
                         }
-                    } // End of ForEach
+                        else{
+                            Image(systemName: "person.fill.checkmark")
+                            Text("외부인 사용가능")
+                                .font(.callout)
+                        }
+                        Spacer()
+                    }
+                    HStack{
+                        Image(systemName: "p.circle")
+                        if selectedStation.isParkingFree {
+                            Text("무료 주차")
+                                .font(.callout)
+                        }
+                        else{
+                            Text("유료 주차")
+                                .font(.callout)
+                        }
+                        Spacer()
+                    }
                 }
-            }.padding(.horizontal, 20)
-        }
+                Text("")
+                HStack{
+                    Text("충전기 현황")
+                        .font(.headline)
+                    Spacer()
+                    Text(showingChargeTime ? "-" : "+")
+                        .font(.headline)
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            showingChargeTime.toggle()
+                        }
+                }
+                
+                // charger list
+                ForEach(0..<selectedStation.chargers.count){
+                    i in
+                    VStack{
+                        HStack{
+                            if selectedStation.chargers[i].chargerStat == "WAITING" {
+                                Text("충전 가능")
+                                    .font(.headline)
+                                    .foregroundColor(.green)
+                            }
+                            else if selectedStation.chargers[i].chargerStat == "CHARGING" {
+                                Text("충전 불가")
+                                    .font(.headline)
+                                    .foregroundColor(.red)
+                            }
+                            else if selectedStation.chargers[i].chargerStat == "STOPPED" {
+                                Text("운영 중지")
+                                    .font(.headline)
+                                    .foregroundColor(.orange)
+                            }
+                            else if selectedStation.chargers[i].chargerStat == "CHECKING" {
+                                Text("점검 진행")
+                                    .font(.headline)
+                                    .foregroundColor(.orange)
+                            }
+                            else {
+                                Text("확인 불가")
+                                    .font(.headline)
+                                    .foregroundColor(.orange)
+                            }
+                            if selectedStation.chargers[i].isDCCombo {
+                                Text("DC콤보")
+                                    .availalbeTextModifier()
+                            }
+                            else {
+                                Text("DC콤보")
+                                    .unavailalbeTextModifier()
+                            }
+                            if selectedStation.chargers[i].isDCDemo {
+                                Text("DC데모")
+                                    .availalbeTextModifier()
+                            }
+                            else {
+                                Text("DC데모")
+                                    .unavailalbeTextModifier()
+                            }
+                            if selectedStation.chargers[i].isAC3 {
+                                Text("AC3상")
+                                    .availalbeTextModifier()
+                            }
+                            else {
+                                Text("AC3상")
+                                    .unavailalbeTextModifier()
+                            }
+                            if selectedStation.chargers[i].isACSlow {
+                                Text("완속")
+                                    .availalbeTextModifier()
+                            }
+                            else {
+                                Text("완속")
+                                    .unavailalbeTextModifier()
+                            }
+                            
+                        }
+                        if showingChargeTime {
+                            let chargeTime = ChargeTimeToString(chargerStat: selectedStation.chargers[i].chargerStat,
+                                                                lastChargeDateTime: selectedStation.chargers[i].lastChargeDateTime,
+                                                                startChargeDateTime: selectedStation.chargers[i].startChargeDateTime)
+                            Text(chargeTime)
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                } // End of ForEach
+            }
+        }.padding(.horizontal, 20)
     }
     
     // call Naver Map for route guidance

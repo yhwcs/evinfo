@@ -90,7 +90,7 @@ struct StationRowView: View {
             self.showingStationDetailSheet = true
         }
         .fullScreenCover(isPresented: $showingStationDetailSheet, content: {
-            StationDetailView()
+            StationTabView()
                 .environmentObject(selectedStation)
                 .environmentObject(startLocation)
         })

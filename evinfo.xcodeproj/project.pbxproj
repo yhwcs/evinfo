@@ -35,7 +35,10 @@
 		80CE0E4A273406EC00D176CB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 80CE0E49273406EC00D176CB /* Lottie */; };
 		80CE0E4C2734070500D176CB /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E4B2734070500D176CB /* LottieView.swift */; };
 		80CE0E4E2734096E00D176CB /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0E4D2734096E00D176CB /* Loading.json */; };
-		80CE0E522747DB9F00D176CB /* LaunchScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0E512747DB9F00D176CB /* LaunchScreenImage.png */; };
+		80CE0E522747DB9F00D176CB /* LaunchScreenImage in Resources */ = {isa = PBXBuildFile; fileRef = 80CE0E512747DB9F00D176CB /* LaunchScreenImage */; };
+		80CE0E54274A818B00D176CB /* StationTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E53274A818B00D176CB /* StationTabView.swift */; };
+		80CE0E56274A846C00D176CB /* NearbyMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E55274A846C00D176CB /* NearbyMapView.swift */; };
+		80CE0E58274A85DB00D176CB /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E57274A85DB00D176CB /* ReviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,7 +86,10 @@
 		80CE0E462733C30800D176CB /* CustomChargerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChargerType.swift; sourceTree = "<group>"; };
 		80CE0E4B2734070500D176CB /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		80CE0E4D2734096E00D176CB /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Loading.json; path = ../../../Downloads/Loading.json; sourceTree = "<group>"; };
-		80CE0E512747DB9F00D176CB /* LaunchScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreenImage.png; path = ../../LaunchScreenImage.png; sourceTree = "<group>"; };
+		80CE0E512747DB9F00D176CB /* LaunchScreenImage */ = {isa = PBXFileReference; lastKnownFileType = file; name = LaunchScreenImage; path = ../../LaunchScreenImage; sourceTree = "<group>"; };
+		80CE0E53274A818B00D176CB /* StationTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTabView.swift; sourceTree = "<group>"; };
+		80CE0E55274A846C00D176CB /* NearbyMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMapView.swift; sourceTree = "<group>"; };
+		80CE0E57274A85DB00D176CB /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,7 +139,10 @@
 				809DBBDB27004DFF0002D1EF /* StationRowView.swift */,
 				809DBBE1270F07E50002D1EF /* StationSimpleView.swift */,
 				809DBBE6271846350002D1EF /* StationDetailView.swift */,
+				80CE0E53274A818B00D176CB /* StationTabView.swift */,
 				80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */,
+				80CE0E55274A846C00D176CB /* NearbyMapView.swift */,
+				80CE0E57274A85DB00D176CB /* ReviewView.swift */,
 				80CE0E4B2734070500D176CB /* LottieView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
@@ -143,7 +152,7 @@
 				809DBBD726FF78030002D1EF /* StationListItem.swift */,
 				809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */,
 				809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */,
-				80CE0E512747DB9F00D176CB /* LaunchScreenImage.png */,
+				80CE0E512747DB9F00D176CB /* LaunchScreenImage */,
 				80CE0E4D2734096E00D176CB /* Loading.json */,
 				809DBBAA26F478B20002D1EF /* Assets.xcassets */,
 				809DBBAF26F478B20002D1EF /* LaunchScreen.storyboard */,
@@ -259,7 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80CE0E522747DB9F00D176CB /* LaunchScreenImage.png in Resources */,
+				80CE0E522747DB9F00D176CB /* LaunchScreenImage in Resources */,
 				809DBBB126F478B20002D1EF /* LaunchScreen.storyboard in Resources */,
 				809DBBAE26F478B20002D1EF /* Preview Assets.xcassets in Resources */,
 				80CE0E4E2734096E00D176CB /* Loading.json in Resources */,
@@ -341,13 +350,16 @@
 				809DBBE0270EFE5A0002D1EF /* StationAnnotationProtocol.swift in Sources */,
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,
 				809DBBB926F47BC60002D1EF /* MapView.swift in Sources */,
+				80CE0E58274A85DB00D176CB /* ReviewView.swift in Sources */,
 				80CE0E4527335B6800D176CB /* FilteringChargerTypeView.swift in Sources */,
 				809DBBDC27004DFF0002D1EF /* StationRowView.swift in Sources */,
 				809DBBA926F478B10002D1EF /* evinfo.xcdatamodeld in Sources */,
 				809DBBE2270F07E50002D1EF /* StationSimpleView.swift in Sources */,
 				809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */,
 				80CE0E472733C30800D176CB /* CustomChargerType.swift in Sources */,
+				80CE0E56274A846C00D176CB /* NearbyMapView.swift in Sources */,
 				809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */,
+				80CE0E54274A818B00D176CB /* StationTabView.swift in Sources */,
 				809DBBD826FF78030002D1EF /* StationListItem.swift in Sources */,
 				809DBBA626F478B10002D1EF /* ContentView.swift in Sources */,
 				809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */,
@@ -491,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"evinfo/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y3Z2Z567H;
@@ -518,6 +531,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"evinfo/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Y3Z2Z567H;
