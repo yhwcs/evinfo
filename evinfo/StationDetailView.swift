@@ -115,23 +115,50 @@ struct StationDetailView: View {
                             }
                         Spacer()
                     }
-                    HStack{
-                        Image(systemName: "building.2")
-                        Text(selectedStation.businessName)
-                            .font(.callout)
-                            Spacer()
-                    }
-                    HStack{
-                        Image(systemName: "wonsign.circle")
-                        Text("1kWh당 "+String(format: "%.1f", selectedStation.chargers[0].price)+"원")
-                            .font(.callout)
-                            Spacer()
-                    }
-                    if selectedStation.useTime.count > 0 {
+                    Group{
                         HStack{
-                            Image(systemName: "clock")
-                            Text(selectedStation.useTime)
-                            .font(.callout)
+                            Image(systemName: "building.2")
+                            Text(selectedStation.businessName)
+                                .font(.callout)
+                                Spacer()
+                        }
+                        HStack{
+                            Image(systemName: "wonsign.circle")
+                            Text("1kWh당 "+String(format: "%.1f", selectedStation.chargers[0].price)+"원")
+                                .font(.callout)
+                                Spacer()
+                        }
+                        if selectedStation.useTime.count > 0 {
+                            HStack{
+                                Image(systemName: "clock")
+                                Text(selectedStation.useTime)
+                                .font(.callout)
+                                Spacer()
+                            }
+                        }
+                        HStack{
+                            if selectedStation.isLimit {
+                                Image(systemName: "person.fill.xmark")
+                                Text("외부인 사용불가")
+                                    .font(.callout)
+                            }
+                            else{
+                                Image(systemName: "person.fill.checkmark")
+                                Text("외부인 사용가능")
+                                    .font(.callout)
+                            }
+                            Spacer()
+                        }
+                        HStack{
+                            Image(systemName: "p.circle")
+                            if selectedStation.isParkingFree {
+                                Text("무료 주차")
+                                    .font(.callout)
+                            }
+                            else{
+                                Text("유료 주차")
+                                    .font(.callout)
+                            }
                             Spacer()
                         }
                     }
