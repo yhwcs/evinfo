@@ -26,6 +26,9 @@ struct StationDetailView: View {
     // copy has been completed flag
     @State private var showingCopyAlert = false
     
+    // showing charge time flag
+    @State private var showingChargeTime = false
+    
     var body: some View {
         VStack {
             HStack{
@@ -132,67 +135,90 @@ struct StationDetailView: View {
                             Spacer()
                         }
                     }
+                    Text("")
+                    HStack{
+                        Text("충전기 현황")
+                            .font(.headline)
+                        Spacer()
+                        Text(showingChargeTime ? "-" : "+")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                            .onTapGesture {
+                                showingChargeTime.toggle()
+                            }
+                    }
                     
                     // charger list
                     ForEach(0..<selectedStation.chargers.count){
                         i in
-                        HStack{
-                            if selectedStation.chargers[i].chargerStat == "WAITING" {
-                                Text("충전 가능")
-                                    .font(.headline)
-                                    .foregroundColor(.green)
+                        VStack{
+                            HStack{
+                                if selectedStation.chargers[i].chargerStat == "WAITING" {
+                                    Text("충전 가능")
+                                        .font(.headline)
+                                        .foregroundColor(.green)
+                                }
+                                else if selectedStation.chargers[i].chargerStat == "CHARGING" {
+                                    Text("충전 불가")
+                                        .font(.headline)
+                                        .foregroundColor(.red)
+                                }
+                                else if selectedStation.chargers[i].chargerStat == "STOPPED" {
+                                    Text("운영 중지")
+                                        .font(.headline)
+                                        .foregroundColor(.orange)
+                                }
+                                else if selectedStation.chargers[i].chargerStat == "CHECKING" {
+                                    Text("점검 진행")
+                                        .font(.headline)
+                                        .foregroundColor(.orange)
+                                }
+                                else {
+                                    Text("확인 불가")
+                                        .font(.headline)
+                                        .foregroundColor(.orange)
+                                }
+                                if selectedStation.chargers[i].isDCCombo {
+                                    Text("DC콤보")
+                                        .availalbeTextModifier()
+                                }
+                                else {
+                                    Text("DC콤보")
+                                        .unavailalbeTextModifier()
+                                }
+                                if selectedStation.chargers[i].isDCDemo {
+                                    Text("DC데모")
+                                        .availalbeTextModifier()
+                                }
+                                else {
+                                    Text("DC데모")
+                                        .unavailalbeTextModifier()
+                                }
+                                if selectedStation.chargers[i].isAC3 {
+                                    Text("AC3상")
+                                        .availalbeTextModifier()
+                                }
+                                else {
+                                    Text("AC3상")
+                                        .unavailalbeTextModifier()
+                                }
+                                if selectedStation.chargers[i].isACSlow {
+                                    Text("완속")
+                                        .availalbeTextModifier()
+                                }
+                                else {
+                                    Text("완속")
+                                        .unavailalbeTextModifier()
+                                }
+                                
                             }
-                            else if selectedStation.chargers[i].chargerStat == "CHARGING" {
-                                Text("충전 불가")
-                                    .font(.headline)
-                                    .foregroundColor(.red)
-                            }
-                            else if selectedStation.chargers[i].chargerStat == "STOPPED" {
-                                Text("운영 중지")
-                                    .font(.headline)
-                                    .foregroundColor(.orange)
-                            }
-                            else if selectedStation.chargers[i].chargerStat == "CHECKING" {
-                                Text("점검 진행")
-                                    .font(.headline)
-                                    .foregroundColor(.orange)
-                            }
-                            else {
-                                Text("확인 불가")
-                                    .font(.headline)
-                                    .foregroundColor(.orange)
-                            }
-                            if selectedStation.chargers[i].isDCCombo {
-                                Text("DC콤보")
-                                    .availalbeTextModifier()
-                            }
-                            else {
-                                Text("DC콤보")
-                                    .unavailalbeTextModifier()
-                            }
-                            if selectedStation.chargers[i].isDCDemo {
-                                Text("DC데모")
-                                    .availalbeTextModifier()
-                            }
-                            else {
-                                Text("DC데모")
-                                    .unavailalbeTextModifier()
-                            }
-                            if selectedStation.chargers[i].isAC3 {
-                                Text("AC3상")
-                                    .availalbeTextModifier()
-                            }
-                            else {
-                                Text("AC3상")
-                                    .unavailalbeTextModifier()
-                            }
-                            if selectedStation.chargers[i].isACSlow {
-                                Text("완속")
-                                    .availalbeTextModifier()
-                            }
-                            else {
-                                Text("완속")
-                                    .unavailalbeTextModifier()
+                            if showingChargeTime {
+                                let chargeTime = ChargeTimeToString(chargerStat: selectedStation.chargers[i].chargerStat,
+                                                                    lastChargeDateTime: selectedStation.chargers[i].lastChargeDateTime,
+                                                                    startChargeDateTime: selectedStation.chargers[i].startChargeDateTime)
+                                Text(chargeTime)
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
                             }
                         }
                     } // End of ForEach
@@ -262,6 +288,60 @@ struct StationDetailView: View {
         } else {
             return
         }
+    }
+    
+    // convert charging start/end time to string
+    func ChargeTimeToString(chargerStat: String, lastChargeDateTime: String, startChargeDateTime: String) -> String {
+        let invalidDate = "2000-01-01"
+        if lastChargeDateTime.contains(invalidDate) || startChargeDateTime.contains(invalidDate){
+            return "데이터가 유효하지 않습니다"
+        }
+        
+        var result = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-M-d H:m:s"
+        
+        if chargerStat == "CHARGING" {
+            let startChargeDateTime = startChargeDateTime.replacingOccurrences(of: "T", with: " ")
+            let startChargeDate:Date = dateFormatter.date(from: startChargeDateTime)!
+            result = CalculateTime(ChargeDate: startChargeDate)
+            result += "전에 충전이 시작되었습니다"
+        }
+        else {
+            let lastChargeDateTime = lastChargeDateTime.replacingOccurrences(of: "T", with: " ")
+            let lastChargeDate:Date = dateFormatter.date(from: lastChargeDateTime)!
+            result = CalculateTime(ChargeDate: lastChargeDate)
+            result += "전에 충전이 종료되었습니다"
+        }
+        
+        return result
+    }
+    
+    // calculate the charging start/end time
+    func CalculateTime(ChargeDate: Date) -> String {
+        var result = ""
+        let distanceDate = Calendar.current.dateComponents([.year, .month, .day], from: ChargeDate, to: Date())
+        
+        if distanceDate.year! != 0 {
+            result += "\(abs(distanceDate.year!))년 "
+        }
+        if distanceDate.month! != 0 {
+            result += "\(abs(distanceDate.month!))월 "
+        }
+        if distanceDate.day! != 0 {
+            result += "\(abs(distanceDate.day!))일 "
+        }
+        
+        let distanceTime = Int(ChargeDate.timeIntervalSince(Date()))
+        let distanceHour = abs((distanceTime % 86400) / 3600)
+        let distanceMinute = abs((distanceTime % 3600) / 60)
+        
+        if distanceHour != 0 {
+            result += "\(distanceHour)시간 "
+        }
+        result += "\(distanceMinute)분 "
+        
+        return result
     }
 }
 
