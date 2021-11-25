@@ -17,9 +17,6 @@ struct StationDetailView: View {
     // current location for Kakao Map API
     @EnvironmentObject var startLocation: Location
     
-    // dismiss view flag
-    @Environment(\.presentationMode) var presentationMode
-    
     // sheet showing flag for selecting a route guidance application
     @State private var showingSelectionSheet = false
     

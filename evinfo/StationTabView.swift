@@ -13,6 +13,8 @@ struct StationTabView: View {
     // current location for Kakao Map API
     @EnvironmentObject var startLocation: Location
     
+    @StateObject var locationList = LocationList()
+    
     // dismiss view flag
     @Environment(\.presentationMode) var presentationMode
     
@@ -39,6 +41,8 @@ struct StationTabView: View {
                         Text("상세 보기")
                     }
                 NearbyMapView()
+                    .environmentObject(selectedStation)
+                    .environmentObject(locationList)
                     .tabItem{
                         Image(systemName: "cart")
                         Text("편의 시설")
@@ -49,6 +53,10 @@ struct StationTabView: View {
                         Text("관련 리뷰")
                     }
             }
+        }
+        .onAppear(){
+            locationList.makeNearbyLocationList(latitude: selectedStation.latitude,
+                                                longitude: selectedStation.longitude)
         }
     }
 }
