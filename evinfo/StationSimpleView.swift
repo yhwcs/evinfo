@@ -87,7 +87,7 @@ struct StationSimpleView: View {
             }.padding(.bottom, 20)
         }
         .fullScreenCover(isPresented: $showingStationDetailSheet, content: {
-            StationDetailView()
+            StationTabView()
                 .environmentObject(selectedStation)
                 .environmentObject(startLocation)
         })
