@@ -79,7 +79,7 @@ struct StationRowView: View {
                 }
                 Text("\(stationListItem.enableChargers) / \(stationListItem.chargers.count)")
                     .font(.headline)
-            }.padding(.bottom, 20)
+            }
             Spacer()
         }
         // onTapGesture occurs even if press the blank space

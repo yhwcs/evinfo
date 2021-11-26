@@ -84,7 +84,7 @@ struct StationSimpleView: View {
                         .font(.headline)
                 }.padding(.horizontal, 20)
                  
-            }.padding(.bottom, 20)
+            }
         }
         .fullScreenCover(isPresented: $showingStationDetailSheet, content: {
             StationTabView()

@@ -40,6 +40,11 @@ struct NearbyMapView: View {
     // location list view flag
     @State private var showingLocationListSheet = false
     
+    @State private var showingCafe = true
+    @State private var showingMart = true
+    @State private var showingStore = true
+    @State private var showingCultureFacilities = true
+    
     var body: some View {
         ZStack{
             Map(coordinateRegion: $region,
@@ -54,24 +59,58 @@ struct NearbyMapView: View {
                             longitude: items.longitude)) {
                     // locations
                     if items.distance != 0.0 {
-                        VStack{
-                            Text(items.name)
-                                .font(.caption2)
-                            Image(systemName: "mappin.circle")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                        if showingCafe && items.category == "CE7" {
+                            VStack{
+                                Text(items.name)
+                                    .font(.caption2)
+                                Image(systemName: "leaf")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            .foregroundColor(.green)
+                            /*
+                            .onTapGesture {
+                                selectedLocation.copyLocation(
+                                    toItem: selectedLocation,
+                                    fromItem: items)
+                                showingLocationSimpleSheet = true
+                            }
+                            */
                         }
-                        .foregroundColor(.blue)
-                        .onTapGesture {
-                            selectedLocation.copyLocation(
-                                toItem: selectedLocation,
-                                fromItem: items)
-                            showingLocationSimpleSheet = true
+                        if showingMart && items.category == "MT1" {
+                            VStack{
+                                Text(items.name)
+                                    .font(.caption2)
+                                Image(systemName: "cart")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            .foregroundColor(.orange)
+                        }
+                        if showingStore && items.category == "CS2" {
+                            VStack{
+                                Text(items.name)
+                                    .font(.caption2)
+                                Image(systemName: "24.square")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            .foregroundColor(.blue)
+                        }
+                        if showingCultureFacilities && items.category == "CT1" {
+                            VStack{
+                                Text(items.name)
+                                    .font(.caption2)
+                                Image(systemName: "building.columns")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                            }
+                            .foregroundColor(.yellow)
                         }
                     }
                     // selected station
                     else {
-                        Image(systemName: "mappin.circle")
+                        Image(systemName: "mappin.and.ellipse")
                             .resizable()
                             .frame(width: 30, height: 30)
                             .foregroundColor(.red)
@@ -103,43 +142,93 @@ struct NearbyMapView: View {
                                                 distance: 0.0,
                                                 callNumber: selectedStation.callNumber,
                                                 address: selectedStation.address,
-                                                placeUrl: "NULL")
+                                                placeUrl: "NULL",
+                                                category: "NULL")
                 locationList.items.append(selectedStationItem)
             }
             VStack(spacing: 10){
-                HStack(spacing: 30){
+                HStack(spacing: 40){
                     Spacer()
                     VStack{
-                        Image(systemName: "leaf")
-                            .resizable()
-                            .imageSizeModifier()
+                        if showingCafe {
+                            Image(systemName: "leaf")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.green)
+                        }
+                        else {
+                            Image(systemName: "leaf")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.gray)
+                        }
                         Text("카페")
-                            .font(.callout)
+                            .font(.footnote)
+                    }
+                    .onTapGesture{
+                        self.showingCafe.toggle()
                     }
                     VStack{
-                        Image(systemName: "cart")
-                            .resizable()
-                            .imageSizeModifier()
+                        if showingMart {
+                            Image(systemName: "cart")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.orange)
+                        }
+                        else{
+                            Image(systemName: "cart")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.gray)
+                        }
                         Text("대형마트")
-                            .font(.callout)
+                            .font(.footnote)
+                    }
+                    .onTapGesture{
+                        self.showingMart.toggle()
                     }
                     VStack{
-                        Image(systemName: "24.square")
-                            .resizable()
-                            .imageSizeModifier()
+                        if showingStore {
+                            Image(systemName: "24.square")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.blue)
+                        }
+                        else{
+                            Image(systemName: "24.square")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.gray)
+                        }
                         Text("편의점")
-                            .font(.callout)
+                            .font(.footnote)
+                    }
+                    .onTapGesture{
+                        self.showingStore.toggle()
                     }
                     VStack{
-                        Image(systemName: "building.columns")
-                            .resizable()
-                            .imageSizeModifier()
+                        if showingCultureFacilities {
+                            Image(systemName: "building.columns")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.yellow)
+                        }
+                        else{
+                            Image(systemName: "building.columns")
+                                .resizable()
+                                .imageSizeModifier()
+                                .foregroundColor(.gray)
+                        }
                         Text("문화시설")
-                            .font(.callout)
+                            .font(.footnote)
+                    }
+                    .onTapGesture{
+                        self.showingCultureFacilities.toggle()
                     }
                     Spacer()
-                }.background(Color.white)
+                }
                 .padding(.bottom, 10)
+                .background(Color.white)
                 
                 Spacer()
                 
@@ -176,7 +265,8 @@ struct NormalButtonStyle: ButtonStyle {
 struct ImageSizeModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .frame(width: 20, height: 20)
+            .scaledToFit()
+            .frame(width: 30)
     }
 }
 

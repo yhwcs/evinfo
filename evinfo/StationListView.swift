@@ -53,25 +53,23 @@ struct StationListView: View {
             }
             // show station list
             List{
-                VStack{
-                    // order of price
-                    if sorted {
-                        ForEach(0..<sortedStationList.count){
-                        index in
-                                StationRowView(stationListItem: $sortedStationList[index])
-                                    .environmentObject(selectedStation)
-                                    .background(Color.white)
-                        }
+                // order of price
+                if sorted {
+                    ForEach(0..<sortedStationList.count){
+                    index in
+                            StationRowView(stationListItem: $sortedStationList[index])
+                                .environmentObject(selectedStation)
+                                .background(Color.white)
                     }
-                    // order of distance
-                    else {
-                        ForEach(0..<stationList.items.count){
-                        index in
-                                StationRowView(stationListItem: $stationList.items[index])
-                                    .environmentObject(selectedStation)
-                                    .environmentObject(startLocation)
-                                    .background(Color.white)
-                        }
+                }
+                // order of distance
+                else {
+                    ForEach(0..<stationList.items.count){
+                    index in
+                            StationRowView(stationListItem: $stationList.items[index])
+                                .environmentObject(selectedStation)
+                                .environmentObject(startLocation)
+                                .background(Color.white)
                     }
                 }
             } // End of List
