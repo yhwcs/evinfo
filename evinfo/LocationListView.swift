@@ -13,11 +13,9 @@ struct LocationListView: View {
     
     var body: some View {
         List{
-            VStack{
-                ForEach(0..<locationList.items.count){
-                index in
-                    LocationRowView(selectedLocation: $locationList.items[index])
-                }
+            ForEach(0..<locationList.items.count){
+            index in
+                LocationRowView(selectedLocation: $locationList.items[index])
             }
         } // End of List
     }

@@ -55,39 +55,28 @@ struct MapView: View {
     @State var timeRemaining = 5
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    @State var menuOpen = false
+    
     var body: some View {
-        ZStack{
-            Map(coordinateRegion: $region,
-                interactionModes: .all,
-                showsUserLocation: true,
-                userTrackingMode: .constant(trackingMode),
-                annotationItems: stationList.items) {
-                items in
-                StationAnnotationProtocol(
-                    MapAnnotation(
-                        coordinate: CLLocationCoordinate2D(
-                            latitude: items.latitude,
-                            longitude: items.longitude)) {
-                    // Station that can charge
-                    if items.enableChargers > 0 {
-                    Image(systemName: "mappin.circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.green)
-                        .onTapGesture {
-                            selectedStation.copyStation(
-                                toItem: selectedStation,
-                                fromItem: items)
-                            showingStationSimpleSheet = true
-                            print(items.stationName)
-                        }
-                    }
-                    // Station that cannot charge
-                    else if items.enableChargers == 0 {
+        NavigationView{
+            ZStack{
+                Map(coordinateRegion: $region,
+                    interactionModes: .all,
+                    showsUserLocation: true,
+                    userTrackingMode: .constant(trackingMode),
+                    annotationItems: stationList.items) {
+                    items in
+                    StationAnnotationProtocol(
+                        MapAnnotation(
+                            coordinate: CLLocationCoordinate2D(
+                                latitude: items.latitude,
+                                longitude: items.longitude)) {
+                        // Station that can charge
+                        if items.enableChargers > 0 {
                         Image(systemName: "mappin.circle")
                             .resizable()
                             .frame(width: 30, height: 30)
-                            .foregroundColor(.red)
+                            .foregroundColor(.green)
                             .onTapGesture {
                                 selectedStation.copyStation(
                                     toItem: selectedStation,
@@ -95,132 +84,190 @@ struct MapView: View {
                                 showingStationSimpleSheet = true
                                 print(items.stationName)
                             }
-                    }
-                    // Station that cannot check
-                    else {
-                        Image(systemName: "mappin.circle")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.orange)
-                            .onTapGesture {
-                                selectedStation.copyStation(
-                                    toItem: selectedStation,
-                                    fromItem: items)
-                                showingStationSimpleSheet = true
-                                print(items.stationName)
-                            }
-                    }
-                })
-            }
-            .partialSheet(isPresented: $showingStationSimpleSheet){
-                StationSimpleView()
-                    .environmentObject(selectedStation)
-                    .environmentObject(startLocation)
-            }
-            .addPartialSheet()
-            .onAppear(){
-                refreshCurLocation()
-                print(curLocation)
-                refreshStationList()
-            }
-            
-            if showingStationSimpleSheet == false && showingStationListSheet == false {
-                VStack(spacing: 10){
-                    // charger type filtering
-                    HStack{
-                        Button(action: {
-                            if self.showingFilteringChargerSheet {
-                                refreshStationList()
-                            }
-                            self.showingFilteringChargerSheet.toggle()
-                        }) {
-                            if self.showingFilteringChargerSheet == false {
-                                HStack{
-                                    Image(systemName: "bolt.fill")
-                                    Text("충전 타입 ▼")
+                        }
+                        // Station that cannot charge
+                        else if items.enableChargers == 0 {
+                            Image(systemName: "mappin.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.red)
+                                .onTapGesture {
+                                    selectedStation.copyStation(
+                                        toItem: selectedStation,
+                                        fromItem: items)
+                                    showingStationSimpleSheet = true
+                                    print(items.stationName)
                                 }
-                                .padding(10)
-                                .foregroundColor(.black)
-                                .background(Color.white)
-                            }
-                            else {
-                                HStack{
-                                    Image(systemName: "bolt.fill")
-                                    Text("충전 타입 ▲")
+                        }
+                        // Station that cannot check
+                        else {
+                            Image(systemName: "mappin.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.orange)
+                                .onTapGesture {
+                                    selectedStation.copyStation(
+                                        toItem: selectedStation,
+                                        fromItem: items)
+                                    showingStationSimpleSheet = true
+                                    print(items.stationName)
                                 }
-                                .padding(10)
-                                .foregroundColor(.white)
-                                .background(Color.green)
-                            }
                         }
-                        .buttonStyle(RoundedRectangleButtonStyle())
-                    }
-                    if self.showingFilteringChargerSheet {
-                        FilteringChargerTypeView()
-                            .environmentObject(customChargerTypes)
-                    }
-                    
-                    Spacer()
-                    // loading to communicate with the server
-                    if self.timeRemaining > 0 {
-                        LottieView(filename: "Loading")
-                            .frame(width: 200, height: 200)
-                            .onReceive(timer) {_ in
-                                if self.timeRemaining > 0 {
-                                    self.timeRemaining -= 1
-                                }
-                            }
-                    }
-                    
-                    Spacer()
-                    HStack(spacing: 10){
-                        // showing station list view button
-                        Button(action: {
-                            showingStationListSheet = true
-                        }) {
-                            Image(systemName: "list.bullet")
-                        }
-                        .buttonStyle(NormalButtonStyle())
-                        .partialSheet(isPresented: $showingStationListSheet){
-                            StationListView()
-                                .environmentObject(stationList)
-                                .environmentObject(selectedStation)
-                                .environmentObject(startLocation)
-                        }
-                        Spacer()
-                        
-                        // refresh button
-                        Button(action: {
-                            refreshCurLocation()
-                            refreshStationList()
-                            print("refresh")
-                        }) {
-                            Image(systemName: "arrow.clockwise")
-                        }
-                        .buttonStyle(NormalButtonStyle())
-
-                        // user tracking mode button
-                        Button(action: {
-                            if trackingMode == .none {
-                                trackingMode = .follow
-                            }
-                            else {
-                                trackingMode = .none
-                            }
-                        }) {
-                            if trackingMode == .none {
-                                Image(systemName: "location.fill")
-                            }
-                            else {
-                                Image(systemName: "location")
-                            }
-                        }
-                        .buttonStyle(NormalButtonStyle())
-                    }
+                    })
                 }
-                .padding()
+                .partialSheet(isPresented: $showingStationSimpleSheet){
+                    StationSimpleView()
+                        .environmentObject(selectedStation)
+                        .environmentObject(startLocation)
+                }
+                .addPartialSheet()
+                .onAppear(){
+                    refreshCurLocation()
+                    print(curLocation)
+                    refreshStationList()
+                }
+                
+                if showingStationSimpleSheet == false && showingStationListSheet == false {
+                    SideBarStack(sidebarWidth: 200, showSidebar: $menuOpen){
+                        MenuContent()
+                    } content: {
+                    VStack(spacing: 10){
+                        HStack(spacing: 5){
+                            // company filtering
+                            Button(action: {
+                                if self.showingFilteringChargerSheet {
+                                    refreshStationList()
+                                }
+                                self.showingFilteringChargerSheet.toggle()
+                            }) {
+                                if self.showingFilteringChargerSheet == false {
+                                    HStack{
+                                        Image(systemName: "bolt.fill")
+                                        Text("운영 기관 ▼")
+                                    }
+                                    .padding(10)
+                                    .foregroundColor(.black)
+                                    .background(Color.white)
+                                }
+                                else {
+                                    HStack{
+                                        Image(systemName: "bolt.fill")
+                                        Text("운영 기관 ▲")
+                                    }
+                                    .padding(10)
+                                    .foregroundColor(.white)
+                                    .background(Color.green)
+                                }
+                            }
+                            .buttonStyle(RoundedRectangleButtonStyle())
+                            // charger type filtering
+                            Button(action: {
+                                if self.showingFilteringChargerSheet {
+                                    refreshStationList()
+                                }
+                                self.showingFilteringChargerSheet.toggle()
+                            }) {
+                                if self.showingFilteringChargerSheet == false {
+                                    HStack{
+                                        Image(systemName: "bolt.fill")
+                                        Text("충전 타입 ▼")
+                                    }
+                                    .padding(10)
+                                    .foregroundColor(.black)
+                                    .background(Color.white)
+                                }
+                                else {
+                                    HStack{
+                                        Image(systemName: "bolt.fill")
+                                        Text("충전 타입 ▲")
+                                    }
+                                    .padding(10)
+                                    .foregroundColor(.white)
+                                    .background(Color.green)
+                                }
+                            }
+                            .buttonStyle(RoundedRectangleButtonStyle())
+                        }
+                        if self.showingFilteringChargerSheet {
+                            FilteringChargerTypeView()
+                                .environmentObject(customChargerTypes)
+                        }
+                        
+                        Spacer()
+                        // loading to communicate with the server
+                        if self.timeRemaining > 0 {
+                            LottieView(filename: "Loading")
+                                .frame(width: 200, height: 200)
+                                .onReceive(timer) {_ in
+                                    if self.timeRemaining > 0 {
+                                        self.timeRemaining -= 1
+                                    }
+                                }
+                        }
+                        
+                        Spacer()
+                        HStack(spacing: 10){
+                            // showing station list view button
+                            Button(action: {
+                                showingStationListSheet = true
+                            }) {
+                                Image(systemName: "list.bullet")
+                            }
+                            .buttonStyle(NormalButtonStyle())
+                            .partialSheet(isPresented: $showingStationListSheet){
+                                StationListView()
+                                    .environmentObject(stationList)
+                                    .environmentObject(selectedStation)
+                                    .environmentObject(startLocation)
+                            }
+                            Spacer()
+                            
+                            // refresh button
+                            Button(action: {
+                                refreshCurLocation()
+                                refreshStationList()
+                                print("refresh")
+                            }) {
+                                Image(systemName: "arrow.clockwise")
+                            }
+                            .buttonStyle(NormalButtonStyle())
+
+                            // user tracking mode button
+                            Button(action: {
+                                if trackingMode == .none {
+                                    trackingMode = .follow
+                                }
+                                else {
+                                    trackingMode = .none
+                                }
+                            }) {
+                                if trackingMode == .none {
+                                    Image(systemName: "location.fill")
+                                }
+                                else {
+                                    Image(systemName: "location")
+                                }
+                            }
+                            .buttonStyle(NormalButtonStyle())
+                        }
+                    }
+                    .padding()
+                    // End of VStack
+                }
             }
-        }
+        } // End of ZStack
+        .navigationBarTitle("EV Finder", displayMode: .inline)
+        .navigationBarItems(leading: (
+            Button(action: {
+                withAnimation{
+                    self.menuOpen.toggle()
+                }
+            }) {
+                Image(systemName: "book")
+                    .imageScale(.large)
+            }
+        ))
+        } // End of Navigation View
     } // End of body
     
     func refreshCurLocation(){

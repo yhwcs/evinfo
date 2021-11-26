@@ -19,7 +19,6 @@ struct LocationRowView: View {
                 Spacer()
             }
             .padding(.horizontal, 20)
-            .padding(.top, 10)
             HStack{
                 Text(selectedLocation.address)
                 .font(.subheadline)
@@ -52,6 +51,7 @@ struct LocationRowView: View {
                     callKMapForPlace(placeUrl: selectedLocation.placeUrl)
                 }){
                     Text("상세정보")
+                        .font(.subheadline)
                         .padding(10)
                         .foregroundColor(.white)
                         .background(Color.blue)
@@ -59,7 +59,6 @@ struct LocationRowView: View {
                 }
             }
             .padding(.horizontal, 20)
-            .padding(.bottom, 10)
         }
         .background(Color.white)
     }

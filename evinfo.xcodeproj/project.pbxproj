@@ -43,6 +43,10 @@
 		80CE0E5C274F37C900D176CB /* LocationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E5B274F37C900D176CB /* LocationList.swift */; };
 		80CE0E5E274F6A8500D176CB /* LocationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E5D274F6A8500D176CB /* LocationRowView.swift */; };
 		80CE0E60274FB17E00D176CB /* LocationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E5F274FB17E00D176CB /* LocationListView.swift */; };
+		80CE0E62274FCB7800D176CB /* ChargerTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E61274FCB7800D176CB /* ChargerTypeView.swift */; };
+		80CE0E64274FD57300D176CB /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E63274FD57300D176CB /* SideMenuView.swift */; };
+		80CE0E662750B04400D176CB /* PriceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E652750B04400D176CB /* PriceInfoView.swift */; };
+		80CE0E682750B8BA00D176CB /* CarChargerTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E672750B8BA00D176CB /* CarChargerTypeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,6 +102,10 @@
 		80CE0E5B274F37C900D176CB /* LocationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationList.swift; sourceTree = "<group>"; };
 		80CE0E5D274F6A8500D176CB /* LocationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRowView.swift; sourceTree = "<group>"; };
 		80CE0E5F274FB17E00D176CB /* LocationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListView.swift; sourceTree = "<group>"; };
+		80CE0E61274FCB7800D176CB /* ChargerTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerTypeView.swift; sourceTree = "<group>"; };
+		80CE0E63274FD57300D176CB /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		80CE0E652750B04400D176CB /* PriceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceInfoView.swift; sourceTree = "<group>"; };
+		80CE0E672750B8BA00D176CB /* CarChargerTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarChargerTypeView.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +161,10 @@
 				80CE0E5D274F6A8500D176CB /* LocationRowView.swift */,
 				80CE0E5F274FB17E00D176CB /* LocationListView.swift */,
 				80CE0E57274A85DB00D176CB /* ReviewView.swift */,
+				80CE0E61274FCB7800D176CB /* ChargerTypeView.swift */,
+				80CE0E652750B04400D176CB /* PriceInfoView.swift */,
+				80CE0E672750B8BA00D176CB /* CarChargerTypeView.swift */,
+				80CE0E63274FD57300D176CB /* SideMenuView.swift */,
 				80CE0E4B2734070500D176CB /* LottieView.swift */,
 				809DBBBA26F47FC30002D1EF /* LocationHelper.swift */,
 				809DBBBC26F4ADC80002D1EF /* Location.swift */,
@@ -372,13 +384,17 @@
 				809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */,
 				80CE0E472733C30800D176CB /* CustomChargerType.swift in Sources */,
 				80CE0E56274A846C00D176CB /* NearbyMapView.swift in Sources */,
+				80CE0E62274FCB7800D176CB /* ChargerTypeView.swift in Sources */,
 				809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */,
 				80CE0E5C274F37C900D176CB /* LocationList.swift in Sources */,
 				80CE0E54274A818B00D176CB /* StationTabView.swift in Sources */,
+				80CE0E64274FD57300D176CB /* SideMenuView.swift in Sources */,
 				809DBBD826FF78030002D1EF /* StationListItem.swift in Sources */,
 				80CE0E5E274F6A8500D176CB /* LocationRowView.swift in Sources */,
 				809DBBA626F478B10002D1EF /* ContentView.swift in Sources */,
+				80CE0E682750B8BA00D176CB /* CarChargerTypeView.swift in Sources */,
 				809DBBBD26F4ADC80002D1EF /* Location.swift in Sources */,
+				80CE0E662750B04400D176CB /* PriceInfoView.swift in Sources */,
 				809DBBDA270038870002D1EF /* StationList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
