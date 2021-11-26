@@ -128,7 +128,7 @@ struct MapView: View {
                 }
                 
                 if showingStationSimpleSheet == false && showingStationListSheet == false {
-                    SideBarStack(sidebarWidth: 200, showSidebar: $menuOpen){
+                    SideBarStack(sidebarWidth: 250, showSidebar: $menuOpen){
                         MenuContent()
                     } content: {
                     VStack(spacing: 10){

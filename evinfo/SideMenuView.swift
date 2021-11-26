@@ -11,6 +11,8 @@ struct MenuContent: View {
     @State private var showingChargerType = false
     @State private var showingPriceInfo = false
     @State private var showingCarChargerType = false
+    @State private var showingHowToUse = false
+    @State private var showingMembership = false
     
     var body: some View {
         List {
@@ -26,6 +28,14 @@ struct MenuContent: View {
                 .onTapGesture {
                     showingCarChargerType = true
             }
+            Text("이용방법 및 결제방법")
+                .onTapGesture{
+                    showingHowToUse = true
+            }
+            Text("회원가입 및 카드발급")
+                .onTapGesture{
+                    showingMembership = true
+            }
         }
         .sheet(isPresented: $showingChargerType){
             ChargerTypeView()
@@ -35,6 +45,12 @@ struct MenuContent: View {
         }
         .sheet(isPresented: $showingCarChargerType){
             CarChargerTypeView()
+        }
+        .sheet(isPresented: $showingHowToUse){
+            HowToUseView()
+        }
+        .sheet(isPresented: $showingMembership){
+            MembershipView()
         }
     }
 }
