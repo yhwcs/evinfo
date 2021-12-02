@@ -53,7 +53,43 @@ class StationList: ObservableObject  {
         // 필요한 경우 취소
             .store(in: &canclelables)
         
-        print("get Stations Information")
+        print("get Stations Information : filtering charger type")
+    }
+    
+    // get station list of the company selected by the user
+    func getFilteredStationInfo(latitude: Double, longitude: Double, size: Int, businessList: BusinessList){
+        var businessNameListString = ""
+        for i in 0..<businessList.items.count {
+            if businessList.items[i].isChecked == true {
+                businessNameListString += businessList.items[i].businessName + ","
+            }
+        }
+        if businessNameListString.count > 0 {
+            businessNameListString.removeLast()
+            print(businessNameListString)
+            businessNameListString = businessNameListString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        }
+        guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/stations/filters?latitude=\(latitude)&longitude=\(longitude)&size=\(size)&businesses=\(businessNameListString)") else { return }
+        
+        URLSession.shared.dataTaskPublisher(for: url)
+        // subscribe publisher을 background thread로 옮김
+            .subscribe(on: DispatchQueue.global(qos: .background))
+        // main thread에서 수신
+            .receive(on: DispatchQueue.main)
+        
+            .tryMap(handleOutput)
+            .decode(type: [StationListItem].self, decoder: JSONDecoder())
+       
+            .sink { completion in
+                print("Completion: \(completion)")
+            } receiveValue: { [weak self] StationListItem in
+                self?.items = StationListItem
+            }
+        
+        // 필요한 경우 취소
+            .store(in: &canclelables)
+        
+        print("get Stations Information : filtering business")
     }
     
     func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
