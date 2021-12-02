@@ -39,13 +39,15 @@ struct LocationRowView: View {
                 Spacer()
             }.padding(.horizontal, 20)
             HStack{
-                Image(systemName: "phone.fill")
-                Text(selectedLocation.callNumber)
-                    .font(.callout)
-                    .foregroundColor(.blue)
-                    .onTapGesture(){
-                        CallBusiness(callNumber: selectedLocation.callNumber)
-                    }
+                if selectedLocation.callNumber.count > 0 {
+                    Image(systemName: "phone.fill")
+                    Text(selectedLocation.callNumber)
+                        .font(.callout)
+                        .foregroundColor(.blue)
+                        .onTapGesture(){
+                            CallBusiness(callNumber: selectedLocation.callNumber)
+                        }
+                }
                 Spacer()
                 Button(action: {
                     callKMapForPlace(placeUrl: selectedLocation.placeUrl)
