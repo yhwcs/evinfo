@@ -49,6 +49,9 @@
 		80CE0E682750B8BA00D176CB /* CarChargerTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E672750B8BA00D176CB /* CarChargerTypeView.swift */; };
 		80CE0E6A2750EE7800D176CB /* HowToUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E692750EE7800D176CB /* HowToUseView.swift */; };
 		80CE0E6C2750F4AD00D176CB /* MembershipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E6B2750F4AD00D176CB /* MembershipView.swift */; };
+		80CE0E6E2757C70500D176CB /* BusinessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E6D2757C70500D176CB /* BusinessList.swift */; };
+		80CE0E702757C74900D176CB /* BusinessListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E6F2757C74900D176CB /* BusinessListItem.swift */; };
+		80CE0E722757C84700D176CB /* FilteringBusinessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E712757C84700D176CB /* FilteringBusinessView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +113,9 @@
 		80CE0E672750B8BA00D176CB /* CarChargerTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarChargerTypeView.swift; sourceTree = "<group>"; };
 		80CE0E692750EE7800D176CB /* HowToUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseView.swift; sourceTree = "<group>"; };
 		80CE0E6B2750F4AD00D176CB /* MembershipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipView.swift; sourceTree = "<group>"; };
+		80CE0E6D2757C70500D176CB /* BusinessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessList.swift; sourceTree = "<group>"; };
+		80CE0E6F2757C74900D176CB /* BusinessListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessListItem.swift; sourceTree = "<group>"; };
+		80CE0E712757C84700D176CB /* FilteringBusinessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringBusinessView.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +167,7 @@
 				809DBBE6271846350002D1EF /* StationDetailView.swift */,
 				80CE0E53274A818B00D176CB /* StationTabView.swift */,
 				80CE0E4427335B6800D176CB /* FilteringChargerTypeView.swift */,
+				80CE0E712757C84700D176CB /* FilteringBusinessView.swift */,
 				80CE0E55274A846C00D176CB /* NearbyMapView.swift */,
 				80CE0E5D274F6A8500D176CB /* LocationRowView.swift */,
 				80CE0E5F274FB17E00D176CB /* LocationListView.swift */,
@@ -180,6 +187,8 @@
 				809DBBD726FF78030002D1EF /* StationListItem.swift */,
 				80CE0E5B274F37C900D176CB /* LocationList.swift */,
 				80CE0E59274F366B00D176CB /* LocationListItem.swift */,
+				80CE0E6D2757C70500D176CB /* BusinessList.swift */,
+				80CE0E6F2757C74900D176CB /* BusinessListItem.swift */,
 				809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */,
 				809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */,
 				80CE0E512747DB9F00D176CB /* LaunchScreenImage */,
@@ -374,9 +383,11 @@
 			files = (
 				809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */,
 				80CE0E4C2734070500D176CB /* LottieView.swift in Sources */,
+				80CE0E702757C74900D176CB /* BusinessListItem.swift in Sources */,
 				809DBBA226F478B10002D1EF /* AppDelegate.swift in Sources */,
 				809DBBE7271846350002D1EF /* StationDetailView.swift in Sources */,
 				809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */,
+				80CE0E722757C84700D176CB /* FilteringBusinessView.swift in Sources */,
 				80CE0E5A274F366B00D176CB /* LocationListItem.swift in Sources */,
 				809DBBE0270EFE5A0002D1EF /* StationAnnotationProtocol.swift in Sources */,
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,
@@ -392,6 +403,7 @@
 				80CE0E56274A846C00D176CB /* NearbyMapView.swift in Sources */,
 				80CE0E62274FCB7800D176CB /* ChargerTypeView.swift in Sources */,
 				809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */,
+				80CE0E6E2757C70500D176CB /* BusinessList.swift in Sources */,
 				80CE0E5C274F37C900D176CB /* LocationList.swift in Sources */,
 				80CE0E54274A818B00D176CB /* StationTabView.swift in Sources */,
 				80CE0E6C2750F4AD00D176CB /* MembershipView.swift in Sources */,

@@ -24,6 +24,7 @@ struct MapView: View {
         static let latitude = 37.55108
         static let longitude = 126.94096
         static let zoom = 0.05
+        static let size = 40
     }
     
     // current location
@@ -39,8 +40,12 @@ struct MapView: View {
     @State private var showingStationSimpleSheet = false
     // filtering charger type view flag
     @State private var showingFilteringChargerSheet = false
+    // filtering business view flag
+    @State private var showingFilteringBusinessSheet = false
 
     @EnvironmentObject var stationList: StationList
+    
+    @StateObject var businessList = BusinessList()
     
     // clicked station marker(pin)
     @StateObject var selectedStation = StationListItem()
@@ -135,14 +140,19 @@ struct MapView: View {
                         HStack(spacing: 5){
                             // company filtering
                             Button(action: {
-                                if self.showingFilteringChargerSheet {
-                                    refreshStationList()
+                                if self.showingFilteringBusinessSheet {
+                                    stationList.clearStationList()
+                                    stationList.getFilteredStationInfo(latitude: curLocation.latitude,
+                                                                       longitude: curLocation.longitude,
+                                                                       size: MapDefault.size,
+                                                                       businessList: businessList)
+                                    self.timeRemaining = 5
                                 }
-                                self.showingFilteringChargerSheet.toggle()
+                                self.showingFilteringBusinessSheet.toggle()
                             }) {
-                                if self.showingFilteringChargerSheet == false {
+                                if self.showingFilteringBusinessSheet == false {
                                     HStack{
-                                        Image(systemName: "bolt.fill")
+                                        Image(systemName: "building.2.fill")
                                         Text("운영 기관 ▼")
                                     }
                                     .padding(10)
@@ -151,7 +161,7 @@ struct MapView: View {
                                 }
                                 else {
                                     HStack{
-                                        Image(systemName: "bolt.fill")
+                                        Image(systemName: "building.2.fill")
                                         Text("운영 기관 ▲")
                                     }
                                     .padding(10)
@@ -188,9 +198,14 @@ struct MapView: View {
                             }
                             .buttonStyle(RoundedRectangleButtonStyle())
                         }
-                        if self.showingFilteringChargerSheet {
+                        if self.showingFilteringChargerSheet == true && self.showingFilteringBusinessSheet == false {
                             FilteringChargerTypeView()
                                 .environmentObject(customChargerTypes)
+                        }
+                        
+                        if self.showingFilteringBusinessSheet == true && self.showingFilteringChargerSheet == false {
+                            FilteringBusinessView()
+                                .environmentObject(businessList)
                         }
                         
                         Spacer()
@@ -289,7 +304,7 @@ struct MapView: View {
         stationList.getStationInfo(
             latitude: curLocation.latitude,
             longitude: curLocation.longitude,
-            size: 40,
+            size: MapDefault.size,
             isDCCombo: customChargerTypes.isDCCombo,
             isDCDemo: customChargerTypes.isDCDemo,
             isAC3: customChargerTypes.isAC3,

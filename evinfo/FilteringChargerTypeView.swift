@@ -15,7 +15,7 @@ struct FilteringChargerTypeView: View {
         HStack(alignment:.bottom, spacing: 30){
             VStack(alignment: .leading, spacing: 10){
                 Button(action: {
-                    SelectAll()
+                    selectAll()
                 }){
                     HStack{
                         Text(checkAll() ? "☑️" : "⬜️")
@@ -65,6 +65,7 @@ struct FilteringChargerTypeView: View {
         }
         .padding()
         .background(Color.white)
+        .cornerRadius(20)
     }
     
     func checkAll() -> Bool {
@@ -80,7 +81,7 @@ struct FilteringChargerTypeView: View {
         return isAllChecked
     }
     
-    func SelectAll(){
+    func selectAll(){
         let isAllChecked = checkAll()
         
         if isAllChecked {
