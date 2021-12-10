@@ -23,6 +23,8 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
     var isLimit: Bool
     var isParkingFree: Bool
     var chargers: [ChargerListItem] = []
+    var reviewAverage: Double
+    var reviews: [ReviewListItem] = []
     
     // Encode/Decode is performed except for id that allows item to be identification
     enum CodingKeys: String, CodingKey {
@@ -40,6 +42,8 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
         case isLimit
         case isParkingFree
         case chargers
+        case reviewAverage
+        case reviews
     }
     
     init(){
@@ -56,6 +60,7 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
         self.isLimit = false
         self.isParkingFree = false
         self.enableChargers = 0
+        self.reviewAverage = 0.0
     }
     
     func copyStation(toItem: StationListItem, fromItem: StationListItem) {
@@ -72,6 +77,7 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
         toItem.isLimit = fromItem.isLimit
         toItem.isParkingFree = fromItem.isParkingFree
         toItem.enableChargers = fromItem.enableChargers
+        toItem.reviewAverage = fromItem.reviewAverage
         
         for _ in 0..<toItem.chargers.count {
             toItem.chargers.remove(at: 0)
@@ -80,6 +86,15 @@ class StationListItem: Identifiable, Codable, ObservableObject, Comparable {
         for i in 0..<fromItem.chargers.count {
             let item = fromItem.chargers[i]
             toItem.chargers.append(item)
+        }
+        
+        for _ in 0..<toItem.reviews.count {
+            toItem.reviews.remove(at: 0)
+        }
+        
+        for i in 0..<fromItem.reviews.count {
+            let item = fromItem.reviews[i]
+            toItem.reviews.append(item)
         }
     }
     
