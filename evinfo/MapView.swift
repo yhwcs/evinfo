@@ -170,6 +170,7 @@ struct MapView: View {
                                 }
                             }
                             .buttonStyle(RoundedRectangleButtonStyle())
+                            .disabled(self.showingFilteringChargerSheet == true)
                             // charger type filtering
                             Button(action: {
                                 if self.showingFilteringChargerSheet {
@@ -197,6 +198,7 @@ struct MapView: View {
                                 }
                             }
                             .buttonStyle(RoundedRectangleButtonStyle())
+                            .disabled(self.showingFilteringBusinessSheet == true)
                         }
                         if self.showingFilteringChargerSheet == true && self.showingFilteringBusinessSheet == false {
                             FilteringChargerTypeView()

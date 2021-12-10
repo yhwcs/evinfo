@@ -18,13 +18,13 @@ struct LocationRowView: View {
                     .foregroundColor(.green)
                 Spacer()
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 10)
             HStack{
                 Text(selectedLocation.address)
                 .font(.subheadline)
                     .foregroundColor(.gray)
                 Spacer()
-            }.padding(.horizontal, 20)
+            }.padding(.horizontal, 10)
             HStack{
                 if selectedLocation.distance < 1000.0 {
                     Text("\(Int(round(selectedLocation.distance)))m")
@@ -37,7 +37,7 @@ struct LocationRowView: View {
                         .foregroundColor(.red)
                 }
                 Spacer()
-            }.padding(.horizontal, 20)
+            }.padding(.horizontal, 10)
             HStack{
                 if selectedLocation.callNumber.count > 0 {
                     Image(systemName: "phone.fill")
@@ -52,16 +52,21 @@ struct LocationRowView: View {
                 Button(action: {
                     callKMapForPlace(placeUrl: selectedLocation.placeUrl)
                 }){
-                    Text("상세정보")
-                        .font(.subheadline)
-                        .padding(10)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(30)
+                    HStack{
+                        Image(systemName: "magnifyingglass")
+                        Text("상세정보")
+                            .font(.subheadline)
+                    }
+                    .padding(10)
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(30)
                 }
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 10)
         }
+        .padding(.top, 5)
+        .padding(.bottom, 5)
         .background(Color.white)
     }
     

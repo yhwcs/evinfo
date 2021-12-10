@@ -15,6 +15,8 @@ struct StationTabView: View {
     
     @StateObject var locationList = LocationList()
     
+    @StateObject var reviewLIst = ReviewList()
+    
     // dismiss view flag
     @Environment(\.presentationMode) var presentationMode
     
@@ -48,6 +50,8 @@ struct StationTabView: View {
                         Text("편의 시설")
                     }
                 ReviewView()
+                    .environmentObject(selectedStation)
+                    .environmentObject(reviewLIst)
                     .tabItem{
                         Image(systemName: "star")
                         Text("관련 리뷰")
@@ -57,6 +61,7 @@ struct StationTabView: View {
         .onAppear(){
             locationList.makeNearbyLocationList(latitude: selectedStation.latitude,
                                                 longitude: selectedStation.longitude)
+            reviewLIst.getReviewInfo(stationId: selectedStation.stationId)
         }
     }
 }

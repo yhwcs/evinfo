@@ -52,6 +52,10 @@
 		80CE0E6E2757C70500D176CB /* BusinessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E6D2757C70500D176CB /* BusinessList.swift */; };
 		80CE0E702757C74900D176CB /* BusinessListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E6F2757C74900D176CB /* BusinessListItem.swift */; };
 		80CE0E722757C84700D176CB /* FilteringBusinessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E712757C84700D176CB /* FilteringBusinessView.swift */; };
+		80CE0E76275DC1FB00D176CB /* ReviewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E75275DC1FB00D176CB /* ReviewItem.swift */; };
+		80CE0E7A275DD0EE00D176CB /* ReviewRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E79275DD0EE00D176CB /* ReviewRowView.swift */; };
+		80CE0E7C275DE26100D176CB /* AddReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E7B275DE26100D176CB /* AddReviewView.swift */; };
+		80CE0E8027632B9100D176CB /* ReviewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE0E7F27632B9100D176CB /* ReviewList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +120,10 @@
 		80CE0E6D2757C70500D176CB /* BusinessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessList.swift; sourceTree = "<group>"; };
 		80CE0E6F2757C74900D176CB /* BusinessListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessListItem.swift; sourceTree = "<group>"; };
 		80CE0E712757C84700D176CB /* FilteringBusinessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringBusinessView.swift; sourceTree = "<group>"; };
+		80CE0E75275DC1FB00D176CB /* ReviewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItem.swift; sourceTree = "<group>"; };
+		80CE0E79275DD0EE00D176CB /* ReviewRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowView.swift; sourceTree = "<group>"; };
+		80CE0E7B275DE26100D176CB /* AddReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewView.swift; sourceTree = "<group>"; };
+		80CE0E7F27632B9100D176CB /* ReviewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewList.swift; sourceTree = "<group>"; };
 		962C61DDA6DF1A1644362C40 /* Pods-evinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.release.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ABAA70732DCBDC9A4EB0ED28 /* Pods-evinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-evinfo.debug.xcconfig"; path = "Target Support Files/Pods-evinfo/Pods-evinfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +180,8 @@
 				80CE0E5D274F6A8500D176CB /* LocationRowView.swift */,
 				80CE0E5F274FB17E00D176CB /* LocationListView.swift */,
 				80CE0E57274A85DB00D176CB /* ReviewView.swift */,
+				80CE0E79275DD0EE00D176CB /* ReviewRowView.swift */,
+				80CE0E7B275DE26100D176CB /* AddReviewView.swift */,
 				80CE0E61274FCB7800D176CB /* ChargerTypeView.swift */,
 				80CE0E652750B04400D176CB /* PriceInfoView.swift */,
 				80CE0E672750B8BA00D176CB /* CarChargerTypeView.swift */,
@@ -189,6 +199,8 @@
 				80CE0E59274F366B00D176CB /* LocationListItem.swift */,
 				80CE0E6D2757C70500D176CB /* BusinessList.swift */,
 				80CE0E6F2757C74900D176CB /* BusinessListItem.swift */,
+				80CE0E7F27632B9100D176CB /* ReviewList.swift */,
+				80CE0E75275DC1FB00D176CB /* ReviewItem.swift */,
 				809DBBDF270EFE5A0002D1EF /* StationAnnotationProtocol.swift */,
 				809DBBC626FC4EE00002D1EF /* GoogleMapView.swift */,
 				80CE0E512747DB9F00D176CB /* LaunchScreenImage */,
@@ -382,9 +394,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				809DBBBB26F47FC30002D1EF /* LocationHelper.swift in Sources */,
+				80CE0E7A275DD0EE00D176CB /* ReviewRowView.swift in Sources */,
 				80CE0E4C2734070500D176CB /* LottieView.swift in Sources */,
 				80CE0E702757C74900D176CB /* BusinessListItem.swift in Sources */,
 				809DBBA226F478B10002D1EF /* AppDelegate.swift in Sources */,
+				80CE0E8027632B9100D176CB /* ReviewList.swift in Sources */,
 				809DBBE7271846350002D1EF /* StationDetailView.swift in Sources */,
 				809DBBD626FF57A60002D1EF /* StationListView.swift in Sources */,
 				80CE0E722757C84700D176CB /* FilteringBusinessView.swift in Sources */,
@@ -393,6 +407,7 @@
 				809DBBA426F478B10002D1EF /* SceneDelegate.swift in Sources */,
 				809DBBB926F47BC60002D1EF /* MapView.swift in Sources */,
 				80CE0E58274A85DB00D176CB /* ReviewView.swift in Sources */,
+				80CE0E76275DC1FB00D176CB /* ReviewItem.swift in Sources */,
 				80CE0E4527335B6800D176CB /* FilteringChargerTypeView.swift in Sources */,
 				80CE0E60274FB17E00D176CB /* LocationListView.swift in Sources */,
 				809DBBDC27004DFF0002D1EF /* StationRowView.swift in Sources */,
@@ -401,6 +416,7 @@
 				809DBBC726FC4EE00002D1EF /* GoogleMapView.swift in Sources */,
 				80CE0E472733C30800D176CB /* CustomChargerType.swift in Sources */,
 				80CE0E56274A846C00D176CB /* NearbyMapView.swift in Sources */,
+				80CE0E7C275DE26100D176CB /* AddReviewView.swift in Sources */,
 				80CE0E62274FCB7800D176CB /* ChargerTypeView.swift in Sources */,
 				809DBBC126F9FB660002D1EF /* ChargerListItem.swift in Sources */,
 				80CE0E6E2757C70500D176CB /* BusinessList.swift in Sources */,

@@ -117,17 +117,6 @@ struct NearbyMapView: View {
                     }
                 })
             }
-            /*
-            .sheet(isPresented: $showingLocationSimpleSheet){
-                LocationRowView(selectedLocation: $selectedLocation)
-            }
-             */
-            /*
-            .partialSheet(isPresented: $showingLocationSimpleSheet){
-                LocationRowView(selectedLocation: $selectedLocation)
-            }
-             */
-            //.addPartialSheet()
             .onAppear(){
                 region = MKCoordinateRegion(
                     center: CLLocationCoordinate2D(
@@ -148,7 +137,6 @@ struct NearbyMapView: View {
             }
             VStack(spacing: 10){
                 HStack(spacing: 40){
-                    Spacer()
                     VStack{
                         if showingCafe {
                             Image(systemName: "leaf")
@@ -225,10 +213,13 @@ struct NearbyMapView: View {
                     .onTapGesture{
                         self.showingCultureFacilities.toggle()
                     }
-                    Spacer()
                 }
-                .padding(.bottom, 10)
+                .padding(10)
+                .padding(.leading, 10)
+                .padding(.trailing, 10)
                 .background(Color.white)
+                .cornerRadius(20)
+                .padding(.top, 10)
                 
                 Spacer()
                 

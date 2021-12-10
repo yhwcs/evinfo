@@ -10,14 +10,14 @@ import Combine
 
 class BusinessList: ObservableObject  {
     init() {
-        getBusinessnfo()
+        getBusinessInfo()
     }
     
     @Published var items: [BusinessListItem] = []
     var canclelables = Set<AnyCancellable>()
     
     // Method
-    func getBusinessnfo() {
+    func getBusinessInfo() {
         guard let url = URL(string: "http://ec2-3-35-112-56.ap-northeast-2.compute.amazonaws.com:8080/api/stations/businesses") else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
